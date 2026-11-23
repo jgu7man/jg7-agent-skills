@@ -7,6 +7,7 @@ import { execSync } from 'node:child_process';
 export enum CliCommandEnum {
   LIST = 'list',
   USE = 'use',
+  INSTALL = 'install',
   INSTALL_GLOBAL = 'install-global',
   PACK_PLUGIN = 'pack-plugin',
   SYNC = 'sync',
@@ -138,6 +139,47 @@ function runUseWorkspace(targetWorkspace: string, presetArg?: string): void {
   console.log(`✅ Generado ${outPath} (preset: ${preset})`);
 }
 
+function resolveSelectedSkillNames(selectorArg?: string): readonly string[] {
+  const allSkills = discoverSkills(SKILLS_ROOT).map((s) => s.folderName);
+  if (!selectorArg || selectorArg === SkillPresetEnum.FULL) {
+    return allSkills;
+  }
+  if (selectorArg === SkillPresetEnum.NX_CORE) {
+    return PRESET_SKILLS_RECORD[SkillPresetEnum.NX_CORE];
+  }
+  if (selectorArg === SkillPresetEnum.PRODUCT) {
+    return PRESET_SKILLS_RECORD[SkillPresetEnum.PRODUCT];
+  }
+  return selectorArg
+    .split(',')
+    .map((s) => s.trim())
+    .filter((s) => allSkills.includes(s));
+}
+
+function runInstallInProject(targetWorkspace: string, selectorArg?: string): void {
+  const resolvedWorkspace = path.resolve(targetWorkspace);
+  const targetSkillsDir = path.join(resolvedWorkspace, '.agents', 'skills');
+  fs.mkdirSync(targetSkillsDir, { recursive: true });
+
+  const selectedNames = resolveSelectedSkillNames(selectorArg);
+  if (selectedNames.length === 0) {
+    console.log('⚠️ No se encontraron skills que coincidan con el filtro indicado.');
+    return;
+  }
+
+  for (const folderName of selectedNames) {
+    const srcDir = path.join(SKILLS_ROOT, folderName);
+    const dstDir = path.join(targetSkillsDir, folderName);
+    if (fs.existsSync(srcDir)) {
+      fs.cpSync(srcDir, dstDir, { recursive: true });
+    }
+  }
+
+  console.log(
+    `✅ Instalados ${selectedNames.length} skills en ${targetSkillsDir}:\n   ${selectedNames.map((n) => `/${n}`).join(', ')}`
+  );
+}
+
 function runInstallGlobal(repoUrl?: string): void {
   const toolkitHome = path.join(os.homedir(), '.mxd-toolkit');
   if (repoUrl) {
@@ -199,6 +241,9 @@ function main(): void {
     case CliCommandEnum.USE:
       runUseWorkspace(arg1 ?? process.cwd(), arg2);
       break;
+    case CliCommandEnum.INSTALL:
+      runInstallInProject(arg1 ?? process.cwd(), arg2);
+      break;
     case CliCommandEnum.INSTALL_GLOBAL:
       runInstallGlobal(arg1);
       break;
@@ -209,7 +254,9 @@ function main(): void {
       runSync();
       break;
     default:
-      console.log('Uso: npx tsx toolkit/mxd-skills.ts <list | use [path] [full|nx-core|product] | install-global [repoUrl] | pack-plugin [outDir] | sync>');
+      console.log(
+        'Uso: npx tsx toolkit/mxd-skills.ts <list | install [path] [full|nx-core|product|s1,s2] | use [path] [full|nx-core|product] | install-global [repoUrl] | pack-plugin [outDir] | sync>'
+      );
   }
 }
 
