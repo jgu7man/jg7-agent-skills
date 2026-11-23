@@ -1,11 +1,11 @@
 ---
 name: jira-rice-estimation
-description: Estándar y playbook para evaluar y calcular la priorización RICE (Reach, Impact, Confidence, Effort) en Jira Discovery (MXPD) adaptado a la capacidad operativa real del equipo de Marxa Digital. El esfuerzo se mide en escala 1 a 5 considerando el squad actual (Tú + Antigravity + QA por ti + auxiliar parcial) y se autocalibra mensualmente consultando al usuario si el equipo ha crecido.
+description: Estándar y playbook para evaluar y calcular la priorización RICE (Reach, Impact, Confidence, Effort) en Jira Discovery (DISC) adaptado a la capacidad operativa real del equipo de JG7. El esfuerzo se mide en escala 1 a 5 considerando el squad actual (Tú + Antigravity + QA por ti + auxiliar parcial) y se autocalibra mensualmente consultando al usuario si el equipo ha crecido.
 ---
 
 # ⚖️ Skill: Estimación RICE en Jira Discovery (`jira-rice-estimation`)
 
-Utiliza este skill siempre que necesites **evaluar, estimar, justificar o actualizar las métricas RICE (Reach, Impact, Confidence, Effort)** para iniciativas o ideas en Jira Discovery (**MXPD**) y proyectos de Marxa Digital.
+Utiliza este skill siempre que necesites **evaluar, estimar, justificar o actualizar las métricas RICE (Reach, Impact, Confidence, Effort)** para iniciativas o ideas en Jira Discovery (**DISC**) y proyectos de JG7.
 
 ---
 
@@ -28,7 +28,7 @@ La estimación de **Effort (Esfuerzo)** debe balancearse en un **punto medio sen
 
 ---
 
-## 📐 2. Escalas de Calificación Oficiales en MXPD (Jira Discovery)
+## 📐 2. Escalas de Calificación Oficiales en DISC (Jira Discovery)
 
 En Jira Polaris / Discovery, todos los factores se cuantifican con calificaciones normalizadas:
 
@@ -110,7 +110,7 @@ $$\mathbf{RICE = \frac{Reach \times Impact \times Confidence}{Effort}}$$
 
 ## 🛠️ 5. Protocolo de Actualización en Jira vía API (`jira-mcp-server` / REST)
 
-Mapeo de IDs de campos en el proyecto **MXPD**:
+Mapeo de IDs de campos en el proyecto **DISC**:
 
 - `customfield_10394`: Reach (number: `1.0` - `5.0`)
 - `customfield_10391`: Impacto + (number: `1.0` - `5.0`)

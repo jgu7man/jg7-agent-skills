@@ -5,7 +5,7 @@ description: Guía, estándares y playbook para redactar y publicar documentaci�
 
 # 📚 Skill: Documentación Funcional en Confluence (`/doc-functional`)
 
-Utiliza este skill siempre que necesites **crear, documentar o actualizar la documentación funcional de un módulo, feature, engine o subsistema en Confluence Cloud** para Business Valley y sus suites (ProFees, Goolima, Miss Pedidos).
+Utiliza este skill siempre que necesites **crear, documentar o actualizar la documentación funcional de un módulo, feature, engine o subsistema en Confluence Cloud** para el Monorepo Nx y sus suites (CoreProduct, AcademyModule, Miss Pedidos).
 
 ---
 
@@ -27,8 +27,8 @@ La documentación funcional no es un diario de desarrollo ni una bitácora de in
 Todo documento funcional generado bajo este skill debe respetar las siguientes secciones bajo el estándar **OKF2 (Open Knowledge Format 2.0)**:
 
 ```markdown
-> **Producto / Proyecto**: `Nombre del Proyecto SaaS (ej. Business Valley — Suite ProFees)`  
-> **Repositorio**: `marxa-digital/mx-business-valley`  
+> **Producto / Proyecto**: `Nombre del Proyecto SaaS (ej. el Monorepo Nx — Suite CoreProduct)`  
+> **Repositorio**: `jg7/mx-nx-monorepo`  
 > **Módulo / Dominio**: `Nombre del Módulo (ej. Órdenes de Compra & Flujo de Caja)`  
 > **Audiencia**: `Ingeniería de Software, Arquitectura, Administración & Operaciones`  
 > **Versión / Estado**: `v1.0.0` | `Producción`  
@@ -78,7 +78,7 @@ Tabla o matriz de casos de uso que detalle qué ocurre bajo cada situación posi
 
 ## 📊 3. Regla de Oro para Diagramas (Just Add+ & Mermaid)
 
-En Confluence Cloud (`marxa-digital.atlassian.net`), la organización utiliza la macro **Just Add+** (`/diagram`).
+En Confluence Cloud (`JG7.atlassian.net`), la organización utiliza la macro **Just Add+** (`/diagram`).
 
 > [!WARNING]
 > **LIMITACIÓN TÉCNICA DE LA API CONFLUENCE**:
@@ -132,7 +132,7 @@ Para publicar o actualizar una página funcional en Confluence:
 1. **Revisión y Estructura en Markdown**:
    - Generar el archivo Markdown respetando OKF2, el bloque de código del diagrama y las tablas.
 2. **Parámetros en `confluence_create_page` o `confluence_update_page`**:
-   - `space_key`: Espacio destino (ej. `"GOOL"` para Goolima CRM o `"MI"` para Miss Pedidos).
+   - `space_key`: Espacio destino (ej. `"DOCS"` para AcademyModule CRM o `"MI"` para Miss Pedidos).
    - `parent_id`: ID de la página padre para mantener la jerarquía de árbol.
    - `title`: Título limpio en texto plano (**SIN** emoji al inicio del texto).
    - `emoji`: Emoji nativo seguro de un solo punto de código (`📦`, `🔄`, `💳`, `📊`, `👥`, `🏢`, `⚡`).

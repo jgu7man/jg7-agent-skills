@@ -1,8 +1,8 @@
 {
-  "name": "marxa-digital-toolkit",
-  "displayName": "Marxa Digital Engineering & Product Toolkit",
+  "name": "jg7-engineering-toolkit",
+  "displayName": "JG7 Engineering & Product Toolkit",
   "version": "1.0.0",
-  "description": "Suite integral de skills y subagentes de desarrollo continuo para monorepos Nx/Angular y Firebase de Marxa Digital: Definición Técnica (/tech-plan), Ejecución Autónoma (/execute-ticket), Bucle Code Review ⇄ Coder (/review-loop), Saneamiento Arquitectónico y Zod (/sanitize-architecture), QA de Cloud Functions con Bruno (/bruno-qa), Refinamiento de Negocio (/refine-specs), Despliegues (/deploy), Git Ejecutivo (/friendly-git), Jira/Confluence (/jira) e Ilustraciones (/illustrations).",
+  "description": "Suite universal de skills y subagentes de desarrollo continuo para monorepos Nx/Angular, TypeScript y Firebase (estándar JG7): Definición Técnica (/tech-plan), Ejecución Autónoma (/execute-ticket), Bucle Code Review ⇄ Coder (/review-loop), Saneamiento Arquitectónico y Zod (/sanitize-architecture), QA de Cloud Functions con Bruno (/bruno-qa), Refinamiento de Negocio (/refine-specs), Despliegues (/deploy), Git Ejecutivo (/friendly-git), Jira/Confluence (/jira) e Ilustraciones (/illustrations).",
   "suggestedPrompts": [
     "/tech-plan",
     "/execute-ticket",
@@ -17,12 +17,15 @@
     "/illustrations"
   ],
   "keywords": [
-    "marxa-digital",
+    "jg7",
+    "jgu7man",
     "nx",
     "angular",
+    "typescript",
     "zod",
     "firebase",
     "code-review",
+    "clean-architecture",
     "bruno",
     "jira",
     "confluence",

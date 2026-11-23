@@ -1,11 +1,11 @@
 ---
 name: deploy
-description: "Hub orquestador de CI/CD, gobernanza de despliegues y automatización de Git para Marxa Digital (DEV, BETA, PRODUCCIÓN y HOTFIX). Gestiona el ciclo de vida completo: validación de PRs, despliegues manuales on-demand en DEV, corte de ramas release hacia BETA con etiquetado approved, promoción gobernada por IssueOps a PRODUCCIÓN (auto-merge --no-ff, SemVer vX.Y.Z y certificación Firestore), y flujo exprés de HOTFIX de emergencia. Se activa con '/develop-deploy', '/beta-deploy', '/production-deploy', '/hotfix-deploy', '/deploy', 'desplegar a producción', 'desplegar a beta' o 'desplegar a dev'."
+description: "Hub orquestador de CI/CD, gobernanza de despliegues y automatización de Git para JG7 (DEV, BETA, PRODUCCIÓN y HOTFIX). Gestiona el ciclo de vida completo: validación de PRs, despliegues manuales on-demand en DEV, corte de ramas release hacia BETA con etiquetado approved, promoción gobernada por IssueOps a PRODUCCIÓN (auto-merge --no-ff, SemVer vX.Y.Z y certificación Firestore), y flujo exprés de HOTFIX de emergencia. Se activa con '/develop-deploy', '/beta-deploy', '/production-deploy', '/hotfix-deploy', '/deploy', 'desplegar a producción', 'desplegar a beta' o 'desplegar a dev'."
 ---
 
-# 🚀 MXD DevOps & CI/CD Lifecycle Hub (`deploy`)
+# 🚀 JG7 DevOps & CI/CD Lifecycle Hub (`deploy`)
 
-Este Super-Skill gobierna la infraestructura, automatización de Git, IssueOps y despliegues continuos para todos los entornos de Marxa Digital:
+Este Super-Skill gobierna la infraestructura, automatización de Git, IssueOps y despliegues continuos para todos los entornos de JG7:
 
 ```mermaid
 flowchart TD

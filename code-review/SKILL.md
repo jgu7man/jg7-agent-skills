@@ -1,11 +1,11 @@
 ---
 name: code-review
-description: "Hub unificado de aseguramiento de calidad, auditoría y revisión de código para cualquier monorepo Nx, Angular, TypeScript y Cloud Functions en Marxa Digital. Integra: (1) Protocolo CAT y Scout Rule pre-desarrollo, (2) Code Review exhaustivo e iterativo de diffs (qa-code-reviewer ⇄ Coder vía .agents/code-review-report.md), (3) Auditoría periódica 5D de codebase, y (4) Quality Gates automatizados pre-PR conectados con qa-reviewing (UI) y bruno-qa (CFs). Se activa con '/code-review', '/review-loop', '/protocol-cat', '/audit-debt', '/feature-verify', '/integrity-check', '/codebase-audit', 'itera el code review', 'revisa la HU' o 'haz un code review'."
+description: "Hub unificado de aseguramiento de calidad, auditoría y revisión de código para cualquier monorepo Nx, Angular, TypeScript y Cloud Functions en JG7. Integra: (1) Protocolo CAT y Scout Rule pre-desarrollo, (2) Code Review exhaustivo e iterativo de diffs (qa-code-reviewer ⇄ Coder vía .agents/code-review-report.md), (3) Auditoría periódica 5D de codebase, y (4) Quality Gates automatizados pre-PR conectados con qa-reviewing (UI) y bruno-qa (CFs). Se activa con '/code-review', '/review-loop', '/protocol-cat', '/audit-debt', '/feature-verify', '/integrity-check', '/codebase-audit', 'itera el code review', 'revisa la HU' o 'haz un code review'."
 ---
 
-# 🛡️ MXD Quality Gates & Code Review Hub (`code-review`)
+# 🛡️ JG7 Quality Gates & Code Review Hub (`code-review`)
 
-Este Super-Skill unifica el aseguramiento de calidad en cualquier proyecto de Marxa Digital, conectando la definición preventiva de [tech-plan](file:///Users/jgu7man/.gemini/config/skills/tech-plan/SKILL.md) y las reglas de arquitectura de [sanitize-architecture](file:///Users/jgu7man/.gemini/config/skills/sanitize-architecture/SKILL.md) con la validación post-código:
+Este Super-Skill unifica el aseguramiento de calidad en cualquier proyecto de JG7, conectando la definición preventiva de [tech-plan](file:///Users/jgu7man/.gemini/config/skills/tech-plan/SKILL.md) y las reglas de arquitectura de [sanitize-architecture](file:///Users/jgu7man/.gemini/config/skills/sanitize-architecture/SKILL.md) con la validación post-código:
 
 ```mermaid
 flowchart LR
@@ -102,7 +102,7 @@ flowchart LR
 Auditar contra la fuente única de verdad en [sanitize-architecture](file:///Users/jgu7man/.gemini/config/skills/sanitize-architecture/SKILL.md):
 
 - **Jerarquía de 4 Niveles**:
-  1. `marxa-digital/[scope]/{api,feature,data-access,domain,ui,utils}`
+  1. `jg7/[scope]/{api,feature,data-access,domain,ui,utils}`
   2. `shared/{api,feature,data-access,domain,ui,utils}/[scope]`
   3. `modules/[scope]/{api,feature,data-access,domain,ui,utils}`
   4. `functions/[scope]`

@@ -1,11 +1,11 @@
 ---
-name: mxd-spec-planning-and-handoff
+name: jg7-spec-planning-and-handoff
 description: Playbook y estándar obligatorio para refinamiento guiado (/grill-me), especificación técnica con Gherkin completo, matriz de capas (CFs vs Frontend), creación fidedigna de tickets en Jira con Subtareas y Handoff de ejecución con cero pérdida de contexto.
 ---
 
-# MXD Spec Planning & Jira Handoff Skill
+# JG7 Spec Planning & Jira Handoff Skill
 
-Utiliza este skill cuando el usuario desee planificar, diseñar o estructurar una nueva funcionalidad, módulo, Épica o refactorización de negocio en Business Valley.
+Utiliza este skill cuando el usuario desee planificar, diseñar o estructurar una nueva funcionalidad, módulo, Épica o refactorización de negocio en el Monorepo Nx.
 
 ---
 
@@ -33,7 +33,7 @@ flowchart LR
   - **Escenarios Gherkin Completos**: Dado / Cuando / Entonces tanto para Happy Path como para No-Happy Path (offline, errores HTTP, validación de tokens).
   - **Modularidad Nx Declarada**: Mapeo estricto de librerías en `libs/modules/<feature>/` (`contracts` sin dependencias de Angular, `feature` para componentes).
   - **Matriz de 4 Capas**:
-    1. _Modelos & Enums_ (`contracts` o `@mx-valley/models`).
+    1. _Modelos & Enums_ (`contracts` o `@jg7/core-domain`).
     2. _Cloud Functions Node.js_ (`api` o functions callables/triggers/schedulers).
     3. _Frontend Angular_ (`feature` con Thin Views, Headless Engines, Resource Services).
     4. _QA & Validación_ (Jest Specs, Emuladores, Navegador con Chrome DevTools).

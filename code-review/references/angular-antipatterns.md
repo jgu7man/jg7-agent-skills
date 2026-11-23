@@ -1,6 +1,6 @@
 # Guía de Detección y Refactorización de Antipatrones de Angular
 
-> **Documento de Referencia Técnica — Marxa Digital & Business Valley**  
+> **Documento de Referencia Técnica — JG7 & el Monorepo Nx**  
 > **Skill Principal:** [code-review](file:///Users/jgu7man/.gemini/config/skills/code-review/SKILL.md)  
 > **Objetivo:** Catálogo visual de antes/después con explicaciones de impacto en rendimiento, change detection y arquitectura.
 
@@ -59,9 +59,9 @@ export class MyComponent {}
 ### ❌ Código Antipatrón (Antes)
 
 ```typescript
-// Archivo dentro de libs/profees/suite-main/src/lib/daily-closures/.../my-comp.ts
+// Archivo dentro de libs/core-product/shared-domain/src/lib/daily-closures/.../my-comp.ts
 // ⚠️ ESTO ES UN ANTIPATRÓN: importar su propia librería mediante el alias de tsconfig.base.json
-import { MonthlyStatsFinancials } from '@mx-profees/models';
+import { MonthlyStatsFinancials } from '@shared/domain/billing';
 ```
 
 - **Consecuencias:**
@@ -74,11 +74,11 @@ import { MonthlyStatsFinancials } from '@mx-profees/models';
 Dentro de la misma librería, navegar usando **rutas relativas** directas al archivo del modelo:
 
 ```typescript
-// ✅ Correcto dentro de libs/profees/suite-main/...:
+// ✅ Correcto dentro de libs/core-product/shared-domain/...:
 import { MonthlyStatsFinancials } from '../../../../../models/monthly-stats.model';
 ```
 
-> **Regla de Oro:** Los alias de `@mx-profees/*` o `@profees/*` son únicamente para **consumidores externos** (como `apps/*` u otras librerías distintas).
+> **Regla de Oro:** Los alias de `@shared/*` o `@modules/*` son únicamente para **consumidores externos** (como `apps/*` u otras librerías distintas).
 
 ---
 

@@ -21,9 +21,9 @@ Esta matriz complementa a [SKILL.md](../SKILL.md) y sirve como referencia rápid
 
 | Error / Antipatrón | Causa Raíz | Solución Canónica |
 | :--- | :--- | :--- |
-| `import { Model } from '@mx-profees/models'` dentro de `libs/profees/suite-main` | Auto-importación circular de la propia librería vía el alias global | Usar ruta relativa directa: `import { Model } from '../../../../../models/model';`. |
+| `import { Model } from '@shared/domain/billing'` dentro de `libs/core-product/shared-domain` | Auto-importación circular de la propia librería vía el alias global | Usar ruta relativa directa: `import { Model } from '../../../../../models/model';`. |
 | Import de `@angular/core` en Cloud Function | Provoca fallo de compilación en Node puro | Extraer modelo agnóstico a paquete compartido de modelos sin dependencias de Angular. |
-| Modelos de vertical en plataforma Core | Acopla lógica específica deportiva/educativa a la plataforma general | Respetar la jerarquía: Core (`@mx-valley`) ➔ Suite (`@mx-profees`) ➔ Vertical (`@profees/goolima`). |
+| Modelos de vertical en plataforma Core | Acopla lógica específica deportiva/educativa a la plataforma general | Respetar la jerarquía: Core (`@jg7`) ➔ Suite (`@shared`) ➔ Vertical (`@core-product/academy`). |
 
 ---
 

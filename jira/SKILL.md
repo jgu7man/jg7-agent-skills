@@ -1,15 +1,15 @@
 ---
 name: jira
-description: "Hub global de ciclo de vida de producto, gestión en Jira Cloud y documentación funcional en Confluence para Marxa Digital. Rige el flujo end-to-end: (1) Product Discovery y Spikes técnicos (MXPD), (2) Estimación y priorización RICE calibrada al squad, (3) Redacción y estructura de Historias de Usuario (plantilla de 5 secciones en Markdown nativo de Jira Cloud, diagramas ASCII y Gherkin de 3 viñetas), (4) Refinamiento guiado (/grill-me) y propuesta de tickets en planes técnicos, (5) Ejecución autónoma de tickets y épicas (feature-execute), (6) Auditoría de horas trabajadas y reconciliación de commits en Jira Board, y (7) Publicación de documentación funcional en Confluence (enfoque en maquinaria y reglas operativas). Se activa con '/jira', '/product-discovery', '/rice-estimation', '/jira-story', '/feature-execute', '/doc-functional', '/jira-audit' o 'redacta una historia de usuario'."
+description: "Hub global de ciclo de vida de producto, gestión en Jira Cloud y documentación funcional en Confluence para JG7. Rige el flujo end-to-end: (1) Product Discovery y Spikes técnicos (DISC), (2) Estimación y priorización RICE calibrada al squad, (3) Redacción y estructura de Historias de Usuario (plantilla de 5 secciones en Markdown nativo de Jira Cloud, diagramas ASCII y Gherkin de 3 viñetas), (4) Refinamiento guiado (/grill-me) y propuesta de tickets en planes técnicos, (5) Ejecución autónoma de tickets y épicas (feature-execute), (6) Auditoría de horas trabajadas y reconciliación de commits en Jira Board, y (7) Publicación de documentación funcional en Confluence (enfoque en maquinaria y reglas operativas). Se activa con '/jira', '/product-discovery', '/rice-estimation', '/jira-story', '/feature-execute', '/doc-functional', '/jira-audit' o 'redacta una historia de usuario'."
 ---
 
-# 🎯 MXD Product, Jira & Confluence Lifecycle Hub (`jira`)
+# 🎯 JG7 Product, Jira & Confluence Lifecycle Hub (`jira`)
 
-Este Super-Skill gobierna de punta a punta el ciclo de vida de producto en Marxa Digital, conectando **Jira Product Discovery (MXPD)**, **Jira Software (PFGO, MPS)** y **Confluence Cloud**:
+Este Super-Skill gobierna de punta a punta el ciclo de vida de producto en JG7, conectando **Jira Product Discovery (DISC)**, **Jira Software (PROJ, MPS)** y **Confluence Cloud**:
 
 ```mermaid
 flowchart LR
-    A["1. Discovery & Spikes<br/>(Ideas en MXPD)"] --> B["2. Priorización RICE<br/>(Calibración Squad)"]
+    A["1. Discovery & Spikes<br/>(Ideas en DISC)"] --> B["2. Priorización RICE<br/>(Calibración Squad)"]
     B --> C["3. Refinamiento & Gherkin<br/>(/grill-me)"]
     C --> D["4. HUs en Jira Cloud<br/>(5 Secciones Markdown)"]
     D --> E["5. Feature Execute<br/>(Desarrollo & Git)"]

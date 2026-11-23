@@ -1,9 +1,9 @@
 ---
 name: friendly-git
-description: "Hub de comunicación ejecutiva y documentación en Git para Marxa Digital. Traduce cambios técnicos, diffs de código y commits crudos a un lenguaje de alto nivel orientado a directores, stakeholders y usuarios finales. Cubre: (1) Redacción de commits amigables y comprensibles, (2) Redacción y estructura de Pull Requests ejecutivos de alto impacto, y (3) Generación automatizada de Notas de Lanzamiento (Release Notes) a partir del diff de Git con categorización por valor de negocio. Se activa con '/friendly-commit', '/friendly-pr', '/release-notes', 'escribe un commit amigable', 'crea un PR ejecutivo' o 'genera release notes'."
+description: "Hub de comunicación ejecutiva y documentación en Git para JG7. Traduce cambios técnicos, diffs de código y commits crudos a un lenguaje de alto nivel orientado a directores, stakeholders y usuarios finales. Cubre: (1) Redacción de commits amigables y comprensibles, (2) Redacción y estructura de Pull Requests ejecutivos de alto impacto, y (3) Generación automatizada de Notas de Lanzamiento (Release Notes) a partir del diff de Git con categorización por valor de negocio. Se activa con '/friendly-commit', '/friendly-pr', '/release-notes', 'escribe un commit amigable', 'crea un PR ejecutivo' o 'genera release notes'."
 ---
 
-# 👔 MXD Executive Git & Release Hub (`friendly-git`)
+# 👔 JG7 Executive Git & Release Hub (`friendly-git`)
 
 Este Super-Skill estandariza la comunicación ejecutiva entre ingeniería y stakeholders de negocio, traduciendo cambios de código complejos en mensajes de alto impacto:
 

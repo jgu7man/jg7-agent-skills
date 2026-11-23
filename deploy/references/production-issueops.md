@@ -5,7 +5,7 @@ description: Orquesta y monitorea el flujo de CI/CD para el entorno de PRODUCCI�
 
 # 🔴 Skill: CI/CD & Despliegue en PRODUCCIÓN (`/production-deploy`)
 
-Utiliza este skill siempre que vayas a **promover y desplegar una versión certificada en el entorno de Producción** (`goolima-crm.web.app` / `app-miss-pedidos.web.app`).
+Utiliza este skill siempre que vayas a **promover y desplegar una versión certificada en el entorno de Producción** (`academy-crm.web.app` / `app-miss-pedidos.web.app`).
 
 ---
 
@@ -36,7 +36,7 @@ Al invocar `/production-deploy`, Antigravity ejecutará el siguiente flujo gober
 
 - **Release Branch:** release/vX.Y.Z
 - **Environment:** prod
-- **Target Apps:** [x] profees-goolima-lobby
+- **Target Apps:** [x] core-product-academy-lobby
 - **Version Bump Type:** patch
 
 ### 📝 User-Facing Changes (What's New)
@@ -59,15 +59,15 @@ $(git log origin/main..HEAD --oneline | head -n 10 | sed 's/^/* /')"
 2. **Acciones que el pipeline ejecuta de forma 100% automatizada**:
    - Auditoría preflight de producción.
    - Compilación con Nx y generación de `config.json` de producción.
-   - Despliegue a Firebase Hosting (`goolima-crm.web.app`).
-   - Registro de certificación en Firestore (`apps/goolima/releases/vX.Y.Z` con `status: 'certified'`).
+   - Despliegue a Firebase Hosting (`academy-crm.web.app`).
+   - Registro de certificación en Firestore (`apps/academy/releases/vX.Y.Z` con `status: 'certified'`).
    - **Auto-Merge con `--no-ff` (sin squash)** hacia `main`.
    - Creación y push del Git Tag canónico `vX.Y.Z`.
    - Cierre automático del Issue de despliegue.
 
 ### Paso 5: Sanity Check en Producción (Punto de Control)
 1. Confirmar disponibilidad del servicio en vivo:
-   - `https://goolima-crm.web.app` (o dominio del producto).
+   - `https://academy-crm.web.app` (o dominio del producto).
    - Verificar que el sidebar muestre la versión final limpia (ej. `vX.Y.Z`, sin sufijo beta).
    - Revisar logs de Firebase Functions (`functions_get_logs`) para asegurar ausencia de errores 500 inmediatos.
 
@@ -94,7 +94,7 @@ Si en el Sanity Check se detecta una degradación crítica o un fallo bloqueante
 ```bash
 gh workflow run rollback-instant.yml \
   -f target-environment=prod \
-  -f site-id=goolima-crm \
+  -f site-id=academy-crm \
   -f target-release-tag=vX.Y.Z-previo \
   -f rollback-rules=false
 ```

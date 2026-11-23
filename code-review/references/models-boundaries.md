@@ -2,13 +2,13 @@
 
 ## 1. Principio Fundamental
 
-Queda estrictamente **prohibido contaminar las librerías transversales (`marxa-digital/*` o `shared/*`) con conceptos, enums, tarifas o catálogos específicos de un módulo de negocio (`modules/[scope]`)**, así como mezclar responsabilidades entre tipos de librería (`domain`, `data-access`, `ui`, `feature`, `api`, `utils`).
+Queda estrictamente **prohibido contaminar las librerías transversales (`jg7/*` o `shared/*`) con conceptos, enums, tarifas o catálogos específicos de un módulo de negocio (`modules/[scope]`)**, así como mezclar responsabilidades entre tipos de librería (`domain`, `data-access`, `ui`, `feature`, `api`, `utils`).
 
 La arquitectura sigue una jerarquía agnóstica de **4 niveles**:
 
 ```mermaid
 graph TD
-    Level1["1. marxa-digital/[scope]/{api,feature,data-access,domain,ui,utils}<br/>Plataforma Core Multi-Proyecto"]
+    Level1["1. jg7/[scope]/{api,feature,data-access,domain,ui,utils}<br/>Plataforma Core Multi-Proyecto"]
     Level2["2. shared/{api,feature,data-access,domain,ui,utils}/[scope]<br/>Transversal del Monorepo Actual"]
     Level3["3. modules/[scope]/{api,feature,data-access,domain,ui,utils}<br/>Módulo de Dominio / Negocio Específico"]
     Backend["4. functions/[scope]<br/>Cloud Functions & Triggers del Scope"]
@@ -24,13 +24,13 @@ graph TD
 
 ## 2. Reglas de Dependencia por Nivel
 
-### Nivel 1: `marxa-digital/[scope]/*`
-- **Propósito**: Piezas core reutilizables en cualquier proyecto de Marxa Digital (auth base, componentes UI atómicos, utilidades transversales, clientes base).
+### Nivel 1: `jg7/[scope]/*`
+- **Propósito**: Piezas core reutilizables en cualquier proyecto de JG7 (auth base, componentes UI atómicos, utilidades transversales, clientes base).
 - **Restricción**: **Nunca** importa de `shared/*`, `modules/*` ni `functions/*`.
 
 ### Nivel 2: `shared/{type}/[scope]`
 - **Propósito**: Contratos, componentes, acceso a datos y utilidades compartidas por múltiples módulos dentro del mismo monorepo.
-- **Restricción**: Puede importar de `marxa-digital/*` y de otros `shared/*` (respetando las reglas de `type`), pero **nunca** de `modules/*`.
+- **Restricción**: Puede importar de `jg7/*` y de otros `shared/*` (respetando las reglas de `type`), pero **nunca** de `modules/*`.
 
 ### Nivel 3: `modules/[scope]/{type}`
 - **Propósito**: Lógica, vistas, estado y modelos propios de un módulo o vertical de negocio (ej. `orders`, `catalog`, `billing`, `attendance`).

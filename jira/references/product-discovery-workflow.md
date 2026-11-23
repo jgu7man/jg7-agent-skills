@@ -1,11 +1,11 @@
 ---
-name: mxd-product-discovery
-description: Workflow y metodología para evaluar nuevos requerimientos, features y pendientes en Jira Product Discovery (MXPD), aplicar estimación RICE calibrada, priorizar en olas del roadmap y derivar Épicas e Historias de Usuario en Jira Software (PFGO, MPS).
+name: jg7-product-discovery
+description: Workflow y metodología para evaluar nuevos requerimientos, features y pendientes en Jira Product Discovery (DISC), aplicar estimación RICE calibrada, priorizar en olas del roadmap y derivar Épicas e Historias de Usuario en Jira Software (PROJ, MPS).
 ---
 
-# 🧭 MXD Product Discovery & Portfolio Prioritization (MXPD)
+# 🧭 JG7 Product Discovery & Portfolio Prioritization (DISC)
 
-Utiliza este skill cada vez que el usuario plantee una **nueva idea, requerimiento, dolor operativo o pendiente funcional** en el ecosistema Marxa Digital (Business Valley, ProFees, Miss Pedidos).
+Utiliza este skill cada vez que el usuario plantee una **nueva idea, requerimiento, dolor operativo o pendiente funcional** en el ecosistema JG7 (el Monorepo Nx, CoreProduct, Miss Pedidos).
 
 ---
 
@@ -15,31 +15,31 @@ Evitar el desarrollo desordenado o reactivo. Todo requerimiento nuevo debe pasar
 
 ```mermaid
 flowchart LR
-    A["💡 Nuevo Requerimiento"] --> B["1. Mapeo MXPD<br>(¿Existe idea o se propone?)"]
+    A["💡 Nuevo Requerimiento"] --> B["1. Mapeo DISC<br>(¿Existe idea o se propone?)"]
     B --> C["2. Calificación RICE<br>(Reach, Impact, Confidence, Effort)"]
     C --> D["3. Asignación de Ola<br>(P0 Inmediato, Ola 1, Ola 2, Ola 3)"]
-    D --> E["4. Desglose Delivery<br>(Épica + HUs en PFGO / MPS)"]
+    D --> E["4. Desglose Delivery<br>(Épica + HUs en PROJ / MPS)"]
     E --> F["5. Plan de Implementación"]
 ```
 
 ---
 
-## 🔍 Paso 1: Mapeo en Jira Product Discovery (`MXPD`)
+## 🔍 Paso 1: Mapeo en Jira Product Discovery (`DISC`)
 
-Antes de crear tickets de desarrollo (`PFGO` o `MPS`):
+Antes de crear tickets de desarrollo (`PROJ` o `MPS`):
 
 1. **Auditar el Backlog de Discovery**:
-   - Verificar si el requerimiento ya existe como Idea en el proyecto **`MXPD`** (Jira Product Discovery).
-   - Ejemplos de Ideas existentes: `MXPD-10` (Cobranza y Ledger), `MXPD-15` (Campañas de Compra), `MXPD-20` (Portal de Padres).
+   - Verificar si el requerimiento ya existe como Idea en el proyecto **`DISC`** (Jira Product Discovery).
+   - Ejemplos de Ideas existentes: `DISC-10` (Cobranza y Ledger), `DISC-15` (Campañas de Compra), `DISC-20` (Portal de Padres).
 2. **Si no existe**:
-   - Proponer formalmente la nueva **Idea de Producto** en `MXPD` con:
+   - Proponer formalmente la nueva **Idea de Producto** en `DISC` con:
      - **Título**: Verbo de valor + Beneficiario (ej. _Personalización Manual de Descuento Early-Bird para Administración de Escuela_).
      - **Problema a Resolver**: Dolor real en ventanilla, directivo o usuario final.
      - **Resultado Esperado**: Métrica o beneficio operativo tangible.
 
 ---
 
-## ⚖️ Paso 2: Evaluación RICE Calibrada (Capacidad Real Marxa Digital)
+## ⚖️ Paso 2: Evaluación RICE Calibrada (Capacidad Real JG7)
 
 Calcula la priorización RICE adaptada a la velocidad operativa real del equipo:
 
@@ -99,11 +99,11 @@ A partir del RICE Score y la urgencia de calendario:
 
 Una vez aprobada la priorización:
 
-1. **Regla de 3 o más HUs**: Si la Idea de MXPD requiere 3 o más Historias de Usuario, **se crea obligatoriamente una Épica en `PFGO` o `MPS`** que represente la Idea.
+1. **Regla de 3 o más HUs**: Si la Idea de DISC requiere 3 o más Historias de Usuario, **se crea obligatoriamente una Épica en `PROJ` o `MPS`** que represente la Idea.
 2. **Vinculación**: La Épica o HUs creadas deben incluir en su descripción la referencia a la Idea de Discovery:
    ```text
-   h2. 🔗 Product Discovery (MXPD)
-   * *Idea:* [MXPD-15|https://marxa-digital.atlassian.net/browse/MXPD-15]
+   h2. 🔗 Product Discovery (DISC)
+   * *Idea:* [DISC-15|https://JG7.atlassian.net/browse/DISC-15]
    * *RICE Score:* 480 (R:8, I:2, C:0.8, E:2.5)
    * *Ola:* Ola 1 (Prioridad P0)
    ```
@@ -116,11 +116,11 @@ Una vez aprobada la priorización:
 Cada propuesta de nueva funcionalidad debe incorporar esta tabla ejecutiva:
 
 ```markdown
-### 🧭 Evaluación de Producto (MXPD & RICE)
+### 🧭 Evaluación de Producto (DISC & RICE)
 
 | Métrica                    |   Valor Asignado    | Justificación                                      |
 | :------------------------- | :-----------------: | :------------------------------------------------- |
-| **Idea MXPD**              | `MXPD-XX` (o Nueva) | Nombre de la iniciativa en Discovery               |
+| **Idea DISC**              | `DISC-XX` (o Nueva) | Nombre de la iniciativa en Discovery               |
 | **Reach (Alcance)**        |      `8 / 10`       | Aplica a todos los alumnos que pagan en ventanilla |
 | **Impact (Impacto)**       |    `2.0 (Alto)`     | Elimina capturas chuecas de fin de mes             |
 | **Confidence (Confianza)** |    `100% (1.0)`     | Regla de negocio definida por administración       |

@@ -1,15 +1,15 @@
 import * as admin from 'firebase-admin';
 
 /**
- * Workflow de Verificación Pre-Flight y Auditoría Automática Pre-Despliegue a Producción (CRM GOOLIMA).
+ * Workflow de Verificación Pre-Flight y Auditoría Automática Pre-Despliegue a Producción (CRM ACADEMY_MODULE).
  * Valida la integridad de la base de datos, reglas de Firestore, catálogos de categorías y usuarios canónicos
  * de forma dinámica y escalable (cero hardcodeo de correos).
  *
  * Uso:
- * FIREBASE_PROJECT_ID=pro-fees-test pnpm exec ts-node -r tsconfig-paths/register --project scripts/tsconfig.seed.json scripts/verify-preflight-readiness.ts
+ * FIREBASE_PROJECT_ID=core-product-test pnpm exec ts-node -r tsconfig-paths/register --project scripts/tsconfig.seed.json scripts/verify-preflight-readiness.ts
  */
 async function runPreflightChecklist() {
-  const projectId = process.env['FIREBASE_PROJECT_ID'] || 'pro-fees-test';
+  const projectId = process.env['FIREBASE_PROJECT_ID'] || 'core-product-test';
   const serviceAccountRaw =
     process.env['PROFEES_FIREBASE_SERVICE_ACCOUNT'] ||
     process.env['FIREBASE_SERVICE_ACCOUNT'];
@@ -37,11 +37,11 @@ async function runPreflightChecklist() {
 
   let hasErrors = false;
 
-  // 1. Validar existencia del Tenant 'goolima'
+  // 1. Validar existencia del Tenant 'academy'
   console.log(
-    '1️⃣  Validando Documento Principal de Tenant (tenants/goolima)...',
+    '1️⃣  Validando Documento Principal de Tenant (tenants/academy)...',
   );
-  const tenantDoc = await db.doc('tenants/goolima').get();
+  const tenantDoc = await db.doc('tenants/academy').get();
   let tenantOwnerUid = '';
   let tenantOwnerEmail = '';
 
@@ -49,10 +49,10 @@ async function runPreflightChecklist() {
     const tenantData = tenantDoc.data() || {};
     tenantOwnerUid = tenantData.ownerId || tenantData.primaryAdminUid || '';
     tenantOwnerEmail = tenantData.ownerEmail || tenantData.contactEmail || '';
-    console.log('   ✅ Tenant "goolima" existe en Firestore.');
+    console.log('   ✅ Tenant "academy" existe en Firestore.');
   } else {
     console.error(
-      '   ❌ ERROR: No se encontró el documento "tenants/goolima"!',
+      '   ❌ ERROR: No se encontró el documento "tenants/academy"!',
     );
     hasErrors = true;
   }
@@ -68,7 +68,7 @@ async function runPreflightChecklist() {
       const userDoc = await db.doc(`users/${tenantOwnerUid}`).get();
       if (userDoc.exists) {
         console.log(
-          `   ✅ Owner del Tenant verificado por UID (${userAuth.email || userAuth.uid}) desde tenants/goolima.`,
+          `   ✅ Owner del Tenant verificado por UID (${userAuth.email || userAuth.uid}) desde tenants/academy.`,
         );
         ownerFound = true;
       }
@@ -83,7 +83,7 @@ async function runPreflightChecklist() {
       const userDoc = await db.doc(`users/${userAuth.uid}`).get();
       if (userDoc.exists) {
         console.log(
-          `   ✅ Owner del Tenant verificado por Email (${tenantOwnerEmail}) desde tenants/goolima.`,
+          `   ✅ Owner del Tenant verificado por Email (${tenantOwnerEmail}) desde tenants/academy.`,
         );
         ownerFound = true;
       }
@@ -99,7 +99,7 @@ async function runPreflightChecklist() {
       for (const doc of usersSnap.docs) {
         const u = doc.data();
         const isTenantAdmin =
-          u.tenantId === 'goolima' &&
+          u.tenantId === 'academy' &&
           (u.tenantRole === 'owner' ||
             u.tenantRole === 'admin' ||
             u.superadmin === true);
@@ -134,20 +134,20 @@ async function runPreflightChecklist() {
 
   // 3. Validar Catálogo de Categorías / Service Plans
   console.log(
-    '\n3️⃣  Validando Catálogo de Categorías (tenants/goolima/service_plans)...',
+    '\n3️⃣  Validando Catálogo de Categorías (tenants/academy/service_plans)...',
   );
-  const plansSnap = await db.collection('tenants/goolima/service_plans').get();
+  const plansSnap = await db.collection('tenants/academy/service_plans').get();
   const canonicalIds = [
-    'plan-goolima-1',
-    'plan-goolima-2',
-    'plan-goolima-3',
-    'plan-goolima-4',
-    'plan-goolima-5',
-    'plan-goolima-6',
-    'plan-goolima-7',
-    'plan-goolima-8',
-    'plan-goolima-9',
-    'plan-goolima-instruccional',
+    'plan-academy-1',
+    'plan-academy-2',
+    'plan-academy-3',
+    'plan-academy-4',
+    'plan-academy-5',
+    'plan-academy-6',
+    'plan-academy-7',
+    'plan-academy-8',
+    'plan-academy-9',
+    'plan-academy-instruccional',
   ];
 
   let invalidPlansCount = 0;
@@ -162,7 +162,7 @@ async function runPreflightChecklist() {
 
   if (invalidPlansCount === 0 && plansSnap.size >= 8) {
     console.log(
-      `   ✅ Catálogo limpio: ${plansSnap.size} categorías oficiales de GOOLIMA sin duplicados.`,
+      `   ✅ Catálogo limpio: ${plansSnap.size} categorías oficiales de ACADEMY_MODULE sin duplicados.`,
     );
   } else if (invalidPlansCount > 0) {
     console.error(
@@ -171,11 +171,11 @@ async function runPreflightChecklist() {
     hasErrors = true;
   }
 
-  // 4. Validar Expedientes de Alumnos (tenants/goolima/subscribers)
+  // 4. Validar Expedientes de Alumnos (tenants/academy/subscribers)
   console.log(
-    '\n4️⃣  Validando Expedientes de Alumnos (tenants/goolima/subscribers)...',
+    '\n4️⃣  Validando Expedientes de Alumnos (tenants/academy/subscribers)...',
   );
-  const subsSnap = await db.collection('tenants/goolima/subscribers').get();
+  const subsSnap = await db.collection('tenants/academy/subscribers').get();
   if (subsSnap.size >= 100) {
     console.log(
       `   ✅ Plantilla de alumnos completa: ${subsSnap.size} expedientes activos en Firestore.`,

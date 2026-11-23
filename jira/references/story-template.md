@@ -1,11 +1,11 @@
 ---
 name: jira-story-structure
-description: Estándar corporativo obligatorio para redactar y estructurar Historias de Usuario (HU) y tickets técnicos en Jira Cloud para Business Valley y sus suites (PFGO, MPS). Define la plantilla de 5 secciones en Markdown nativo de Jira Cloud, análisis técnico, plain-text diagrams, criterios Gherkin y planes de implementación por fases.
+description: Estándar corporativo obligatorio para redactar y estructurar Historias de Usuario (HU) y tickets técnicos en Jira Cloud para el Monorepo Nx y sus suites (PROJ, MPS). Define la plantilla de 5 secciones en Markdown nativo de Jira Cloud, análisis técnico, plain-text diagrams, criterios Gherkin y planes de implementación por fases.
 ---
 
 # 📋 Jira Story Structure Standard (`jira-story-structure`)
 
-Utiliza este skill siempre que redactes o crees una **Historia de Usuario (HU), Bug/Hotfix o Tarea Técnica en Jira Cloud** para los proyectos de Marxa Digital (PFGO, MPS, etc.).
+Utiliza este skill siempre que redactes o crees una **Historia de Usuario (HU), Bug/Hotfix o Tarea Técnica en Jira Cloud** para los proyectos de JG7 (PROJ, MPS, etc.).
 
 ---
 
@@ -42,7 +42,7 @@ Toda issue debe estructurarse con las siguientes 5 secciones obligatorias en Mar
 
 🔗 **Documentación Funcional en Confluence:**
 
-- [Título de la Página](https://marxa-digital.atlassian.net/wiki/spaces/.../pages/...)
+- [Título de la Página](https://JG7.atlassian.net/wiki/spaces/.../pages/...)
 
 ---
 
@@ -70,7 +70,7 @@ Toda issue debe estructurarse con las siguientes 5 secciones obligatorias en Mar
 
 ### 🧹 Auditoría Scout y Refactorización de Antipatrones (Boy Scout Rule)
 
-- **Código Reutilizable Existente:** Utilidades identificadas en `@mx-valley/util` y modelos en `@mx-<suite>/models`.
+- **Código Reutilizable Existente:** Utilidades identificadas en `@jg7/core-utils` y modelos en `@mx-<suite>/models`.
 - **Antipatrones Detectados en Archivos a Intervenir:** Erradicación de `any`, adición de `(keyup.enter)` en `(click)`, `@let` en plantillas, eliminación de lógica duplicada.
 - **Estrategia de Desacoplamiento:** Prevención de crecimiento en componentes/helpers monolíticos (> 500 líneas) mediante extracción atómica.
 
@@ -127,5 +127,5 @@ Cuando prepares una issue para ser creada o actualizada vía script REST de Jira
 
 1. **Usar Markdown Estándar**: Enviar Markdown nativo (`##`, `###`, `---`, `[link](url)`, tablas con `| :--- |`, bloques de código con ````text ````).
 2. **Evitar sintaxis legacy de Jira Server**: No usar `h2.`, `h3.`, `{noformat}`, `|| col ||`, ni `[texto|url]`.
-3. **Validar que la issue quede asociada al proyecto respectivo** (`PFGO` o `MPS`).
+3. **Validar que la issue quede asociada al proyecto respectivo** (`PROJ` o `MPS`).
 `````

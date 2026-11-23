@@ -1,15 +1,15 @@
 ---
 name: sanitize-architecture
-description: "Playbook y fuente única de verdad para auditar y ejecutar saneamientos arquitectónicos en cualquier monorepo Nx/Angular de Marxa Digital: (1) jerarquía agnóstica de 4 niveles por scope + type (marxa-digital/[scope], shared/*/[scope], modules/[scope]/*, functions/[scope]), (2) validación obligatoria con Zod (*.schema.ts) para todo lo que se guarda o lee en DB + BoundaryTransformer para legados, (3) separación estricta de modelos (*.model.ts en domain vs *-copys.model.ts y *-ui.model.ts en ui), (4) erradicación de falsas interfaces (*Like), wrappers de 1 línea y alias redundantes, (5) modificadores de acceso estrictos, y (6) desacoplamiento White-Label (DomainColumnConfig / slots)."
+description: "Playbook y fuente única de verdad para auditar y ejecutar saneamientos arquitectónicos en cualquier monorepo Nx/Angular de JG7: (1) jerarquía agnóstica de 4 niveles por scope + type (jg7/[scope], shared/*/[scope], modules/[scope]/*, functions/[scope]), (2) validación obligatoria con Zod (*.schema.ts) para todo lo que se guarda o lee en DB + BoundaryTransformer para legados, (3) separación estricta de modelos (*.model.ts en domain vs *-copys.model.ts y *-ui.model.ts en ui), (4) erradicación de falsas interfaces (*Like), wrappers de 1 línea y alias redundantes, (5) modificadores de acceso estrictos, y (6) desacoplamiento White-Label (DomainColumnConfig / slots)."
 ---
 
-# 🛠️ MXD Architectural Sanitizer: Scopes, Modelos, Zod y Schemas Legados
+# 🛠️ JG7 Architectural Sanitizer: Scopes, Modelos, Zod y Schemas Legados
 
-Usa este skill cuando necesites auditar, sanear o refactorizar la arquitectura de librerías, contratos, schemas Zod de persistencia o separación de capas en cualquier monorepo Nx de Marxa Digital. Para planeación preventiva pre-código, este skill trabaja en conjunto con [tech-plan](file:///Users/jgu7man/.gemini/config/skills/tech-plan/SKILL.md).
+Usa este skill cuando necesites auditar, sanear o refactorizar la arquitectura de librerías, contratos, schemas Zod de persistencia o separación de capas en cualquier monorepo Nx de JG7. Para planeación preventiva pre-código, este skill trabaja en conjunto con [tech-plan](file:///Users/jgu7man/.gemini/config/skills/tech-plan/SKILL.md).
 
 ```mermaid
 flowchart TD
-    A["1. Jerarquía Scope + Type (marxa-digital / shared / modules / functions)"] --> B["2. Segmentación de Modelos (domain vs copys vs ui)"]
+    A["1. Jerarquía Scope + Type (JG7 / shared / modules / functions)"] --> B["2. Segmentación de Modelos (domain vs copys vs ui)"]
     B --> C["3. Zod Gate en DB (*.schema.ts + BoundaryTransformer)"]
     C --> D["4. Cero Falsas Interfaces (*Like), Wrappers y Alias"]
     D --> E["5. Modificadores Estrictos (private / protected / readonly)"]
@@ -30,7 +30,7 @@ flowchart TD
 Todo proyecto se estructura en **4 niveles de librerías minimalistas**, sin acoplar contratos transversales a reglas de un módulo o vertical particular:
 
 ```text
-Nivel 1: marxa-digital/[scope]/{api,feature,data-access,domain,ui,utils}
+Nivel 1: jg7/[scope]/{api,feature,data-access,domain,ui,utils}
          (Plataforma Core multi-proyecto — agnóstica a cualquier producto específico)
             ⬇
 Nivel 2: shared/{api,feature,data-access,domain,ui,utils}/[scope]
@@ -43,10 +43,10 @@ Backend: functions/[scope]
          (Cloud Functions del scope — solo comparte contratos/schemas puros de domain y utils)
 ```
 
-- **Invariante de Capas**: Queda estrictamente prohibido que conceptos de un `modules/[scope]` se filtren en `shared/*` o en `marxa-digital/*`.
+- **Invariante de Capas**: Queda estrictamente prohibido que conceptos de un `modules/[scope]` se filtren en `shared/*` o en `jg7/*`.
 - **Fronteras por `type`**:
   - `domain` nunca importa de `data-access`, `ui`, `feature` ni `api`.
-  - `ui` solo importa de `domain`, `utils` y `shared/ui` (o `marxa-digital/*/ui`), nunca de `data-access` ni `feature`.
+  - `ui` solo importa de `domain`, `utils` y `shared/ui` (o `jg7/*/ui`), nunca de `data-access` ni `feature`.
   - `data-access` importa de `domain`, `utils` y `shared/data-access`.
   - `feature` orquesta `data-access`, `ui`, `domain` y `utils`.
   - La comunicación entre dos módulos distintos (`modules/[scope-a]` $\rightarrow$ `modules/[scope-b]`) ocurre **exclusivamente** a través de `modules/[scope-b]/api`.
@@ -121,7 +121,7 @@ flowchart LR
 
 ## 🧩 6. Dimensión 6: Desacoplamiento White-Label (`DomainColumnConfig` & Slots)
 
-Cuando un componente agnóstico en `marxa-digital/[scope]/ui` o `shared/ui/[scope]` deba renderizar columnas, atributos o secciones que varían según el módulo/vertical (`modules/[scope]`):
+Cuando un componente agnóstico en `jg7/[scope]/ui` o `shared/ui/[scope]` deba renderizar columnas, atributos o secciones que varían según el módulo/vertical (`modules/[scope]`):
 
 1. **Cero Campos de Vertical Hardcodeados en Capas Superiores**: Los atributos especializados viajan en `domainAttributes?: Record<string, unknown>` o se proyectan vía slots `<ng-content select="[slot-name]" />`.
 2. **Inyección Declarativa de Columnas (`DomainColumnConfig`)**:

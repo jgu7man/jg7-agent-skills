@@ -5,7 +5,7 @@ description: Guía, estándares y mejores prácticas para crear, estructurar y a
 
 # Confluence Authoring & Publishing Skill
 
-Utiliza este skill siempre que necesites **crear, documentar, actualizar o estructurar páginas** dentro de Confluence Cloud para proyectos y suites de Marxa Digital.
+Utiliza este skill siempre que necesites **crear, documentar, actualizar o estructurar páginas** dentro de Confluence Cloud para proyectos y suites de JG7.
 
 ---
 
@@ -25,8 +25,8 @@ Confluence Cloud utiliza un set de íconos estandarizado (Twemoji / single codep
 
 ### Regla 5: Diagramas de Arquitectura y Flujos (Just Add+ & Mermaid)
 > [!TIP]
-> **ESTÁNDAR OFICIAL DE DIAGRAMAS EN CONFLUENCE (MARXA DIGITAL)**:
-> La organización cuenta con la app **Just Add+** instalada en Confluence Cloud (`marxa-digital.atlassian.net`).
+> **ESTÁNDAR OFICIAL DE DIAGRAMAS EN CONFLUENCE (JG7)**:
+> La organización cuenta con la app **Just Add+** instalada en Confluence Cloud (`JG7.atlassian.net`).
 > 
 > **Cómo insertar diagramas:**
 > 1. **Vía Interfaz de Usuario (Editor Confluence - Recomendado):**
@@ -78,7 +78,7 @@ Es fundamental clasificar el propósito del documento antes de redactar su estru
 
 ```typescript
 {
-  space_key: "GOOL",                   // Clave del espacio destino
+  space_key: "DOCS",                   // Clave del espacio destino
   parent_id: "390529237",              // ID de la página padre para mantener jerarquía
   title: "Nombre Limpio de la Página", // Texto plano sin emoji al inicio
   emoji: "🚀",                         // Ícono de página seguro
@@ -107,7 +107,7 @@ Todo documento de especificación o arquitectura técnica debe incluir el encabe
 
 * **En formato `storage` (XHTML Recomendado — 1 sola línea continua dentro de `<p>`)**:
 ```xml
-<blockquote><p><strong>Producto / Proyecto:</strong> Miss Pedidos SaaS<br/> <strong>Repositorio:</strong> <code>marxa-digital/miss-pedidos</code><br/> <strong>Documento:</strong> Especificación Técnica<br/> <strong>Iniciativa / Ticket:</strong> <a href="https://marxa-digital.atlassian.net/browse/MXPD-49">MXPD-49</a><br/> <strong>Versión / Estado:</strong> <code>v1.0.0</code> | <code>Producción</code><br/> <strong>Estándar:</strong> <code>Google Open Knowledge Format (OKF v0.2)</code></p></blockquote>
+<blockquote><p><strong>Producto / Proyecto:</strong> Miss Pedidos SaaS<br/> <strong>Repositorio:</strong> <code>jg7/miss-pedidos</code><br/> <strong>Documento:</strong> Especificación Técnica<br/> <strong>Iniciativa / Ticket:</strong> <a href="https://JG7.atlassian.net/browse/DISC-49">DISC-49</a><br/> <strong>Versión / Estado:</strong> <code>v1.0.0</code> | <code>Producción</code><br/> <strong>Estándar:</strong> <code>Google Open Knowledge Format (OKF v0.2)</code></p></blockquote>
 ```
 *(Nunca colocar `<br/>\n` con salto de línea ni múltiples `<p>` dentro del `<blockquote>` de metadata, ya que Confluence Cloud los convierte en párrafos separados con doble espaciado).*
 

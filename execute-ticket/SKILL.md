@@ -12,8 +12,8 @@ Este comando dispara directamente el flujo de ejecución autónoma documentado e
 1. **Cargar la guía operativa**:
    - Lee obligatoriamente [feature-execution-guide.md](file:///Users/jgu7man/.gemini/config/skills/jira/references/feature-execution-guide.md) y [tech-plan/SKILL.md](file:///Users/jgu7man/.gemini/config/skills/tech-plan/SKILL.md).
 2. **Secuencia de 5 Etapas**:
-   - **Etapa 1 (Orquestador)**: Lee el ticket en Jira (`mxd_get_issue` / `jira_get_issue`), crea la rama `feature/<key>-<slug>` (nunca en `main` ni `develop`) y transiciona el ticket a `In Progress`.
-   - **Etapa 2 (Arquitecto — `/tech-plan`)**: Genera el Plan de Implementación bajo el estándar `marxa-digital/[scope]`, `shared/*/[scope]`, `modules/[scope]/*`, `functions/[scope]` y define los schemas **Zod (`*.schema.ts`)** para DB.
+   - **Etapa 1 (Orquestador)**: Lee el ticket en Jira (`jira_get_issue` / `jira_get_issue`), crea la rama `feature/<key>-<slug>` (nunca en `main` ni `develop`) y transiciona el ticket a `In Progress`.
+   - **Etapa 2 (Arquitecto — `/tech-plan`)**: Genera el Plan de Implementación bajo el estándar `jg7/[scope]`, `shared/*/[scope]`, `modules/[scope]/*`, `functions/[scope]` y define los schemas **Zod (`*.schema.ts`)** para DB.
    - **Etapa 3 (Coder)**: Implementa el plan aplicando Protocolo CAT, validación Zod `.parse()`/`.safeParse()` en DB y `*.spec.ts` (delegando a `firestore-rules-author` si toca `firestore.rules`).
    - **Etapa 4 (Revisor QA — `/review-loop`)**: Ejecuta el bucle `qa-code-reviewer ⇄ Coder` sobre `.agents/code-review-report.md` hasta obtener `0 🔴` y `0 🟡` + `nx affected -t typecheck,lint,test` en verde.
    - **Etapa 5 (Validador Funcional)**:

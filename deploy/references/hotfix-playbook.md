@@ -67,7 +67,7 @@ Al activar `/hotfix-deploy`, Antigravity ejecutará el siguiente ciclo guiado:
    gh issue edit $(gh pr view --json number -q '.number') --add-label "approved"
    ```
 3. **Monitorear `deploy-beta-pr-approved.yml`**:
-   - Esperar a que la versión `vX.Y.Z-beta.0` quede publicada en `goolima-crm-beta.web.app`.
+   - Esperar a que la versión `vX.Y.Z-beta.0` quede publicada en `academy-crm-beta.web.app`.
    - Realizar comprobación rápida de 3 minutos validando que el bug esté resuelto.
 
 ### Paso 5: Despliegue a Producción (IssueOps)
@@ -79,7 +79,7 @@ Al activar `/hotfix-deploy`, Antigravity ejecutará el siguiente ciclo guiado:
 
 - **Release Branch:** hotfix/vX.Y.Z
 - **Environment:** prod
-- **Target Apps:** [x] profees-goolima-lobby
+- **Target Apps:** [x] core-product-academy-lobby
 - **Version Bump Type:** patch
 
 ### 📝 User-Facing Changes (What's New)
@@ -91,7 +91,7 @@ Al activar `/hotfix-deploy`, Antigravity ejecutará el siguiente ciclo guiado:
      gh issue edit <ISSUE_NUMBER> --add-label "approved"
      ```
 3. **Monitorear `issueops-deploy.yml`**:
-   - Esperar el deploy en `goolima-crm.web.app`.
+   - Esperar el deploy en `academy-crm.web.app`.
    - Confirmar el Auto-Merge (`--no-ff`) hacia `main`.
    - Confirmar la creación del tag `vX.Y.Z`.
 

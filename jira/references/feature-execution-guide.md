@@ -44,14 +44,14 @@ Para cada ticket (o lote coherente del mismo `scope`), el Orquestador ejecuta es
 
 ### Paso 1: Lectura de Jira y Seguridad de Rama Git (Orquestador)
 
-- Consultar ticket con `mxd_get_issue` o `jira_get_issue` para extraer Gherkin, contratos y contexto.
+- Consultar ticket con `jira_get_issue` o `jira_get_issue` para extraer Gherkin, contratos y contexto.
 - Verificar `git status` y asegurarse de no estar en `main` ni `develop`.
 - Crear rama temporal `feature/<issue-key>-<slug>` y transicionar el ticket a `In Progress`.
 
 ### Paso 2: Definición Técnica / Plan de Implementación (Arquitecto)
 
 - Aplicar [tech-plan](file:///Users/jgu7man/.gemini/config/skills/tech-plan/SKILL.md) para definir el plano de bajo nivel antes de tocar código:
-  - **Librerías por `scope` + `type`**: `marxa-digital/[scope]`, `shared/{type}/[scope]`, `modules/[scope]/{api,feature,data-access,domain,ui,utils}`, `functions/[scope]`.
+  - **Librerías por `scope` + `type`**: `jg7/[scope]`, `shared/{type}/[scope]`, `modules/[scope]/{api,feature,data-access,domain,ui,utils}`, `functions/[scope]`.
   - **Contratos y Schemas Zod (`domain`)**: `*.model.ts` (con string enums) + `*.schema.ts` (con `z.nativeEnum(...)`) para todo documento que se guarde o lea en DB.
   - **Frontera de Persistencia (`data-access` / `functions`)**: dónde se aplica `Schema.parse()` al guardar y `safeParse()` + `BoundaryTransformer` al leer datos legados.
   - **Topología UI y Tests**: separación `*Engine.ts` vs componentes `OnPush` (`< 250` líneas HTML) y lista de `*.spec.ts` + casos de navegador o Bruno.

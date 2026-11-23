@@ -1,47 +1,47 @@
 ---
 type: wiki
 title: '👥 Catálogo Maestro de Usuarios de Prueba (Dev & QA)'
-description: 'Catálogo de cuentas y credenciales de prueba para QA y desarrollo (Suite Goolima, Suite ProFees y escenarios de Billing).'
-tags: [valle, goolima, profees, qa, dev, seeds, rbac, billing]
+description: 'Catálogo de cuentas y credenciales de prueba para QA y desarrollo (Suite AcademyModule, Suite CoreProduct y escenarios de Billing).'
+tags: [jg7-core, academy, core-product, qa, dev, seeds, rbac, billing]
 generated: { by: 'human:jguzman', at: '2026-08-20T03:15:47.000Z' }
 lastUpdate: '2026-08-20T03:15:47.000Z'
-spaceKey: GOOL
+spaceKey: DOCS
 folderId: '382074881'
 fileId: '382173186'
 ---
 
 # 👥 Catálogo Maestro de Usuarios de Prueba (Dev & QA)
 
-> **Entorno:** `pro-fees-test` (Dev Remoto) / Emuladores Locales  
+> **Entorno:** `core-product-test` (Dev Remoto) / Emuladores Locales  
 > **Contraseña Global por Defecto:** `Pass1234!`  
 > **Última Actualización:** Agosto 2026
 
 ---
 
-## ⚽ 1. Suite Goolima (Tenant Institucional: `goolima`)
+## ⚽ 1. Suite AcademyModule (Tenant Institucional: `academy`)
 
 Tenant multirrol con jerarquía completa para pruebas de roles y permisos (RBAC):
 
 | Rol en Plataforma    | Rol en Negocio           | Nombre / Titular      | Correo Electrónico            | Contraseña  | UID                   | Propósito en QA                                                     |
 | :------------------- | :----------------------- | :-------------------- | :---------------------------- | :---------- | :-------------------- | :------------------------------------------------------------------ |
-| **Owner**            | Director Deportivo       | Cristiano Messi       | `cristiano.messi@goolima.com` | `Pass1234!` | `dev-cristiano-messi` | Configuración general, reportes financieros y administración total. |
+| **Owner**            | Director Deportivo       | Cristiano Messi       | `cristiano.messi@academy.com` | `Pass1234!` | `dev-cristiano-messi` | Configuración general, reportes financieros y administración total. |
 | **Owner (Fallback)** | Director Deportivo       | Cristiano Messi (Dev) | `user@example.com`            | `Pass1234!` | `dev-user-example`    | Usuario comodín para pruebas de integración continua.               |
-| **Admin**            | Coordinador General      | Kylian Mbappé         | `mbappe@goolima.com`          | `Pass1234!` | `dev-mbappe`          | Gestión de altas, cobros, alumnos y asignación de profesores.       |
-| **Admin (ProFees)**  | Coordinador General      | Kylian Mbappé         | `mbappe@profees.com`          | `Pass1234!` | `dev-mbappe-profees`  | Validación de acceso cross-suite desde el lobby general.            |
-| **Crew**             | Profesor Principal       | Erling Haaland        | `haaland@goolima.com`         | `Pass1234!` | `dev-haaland`         | Registro de pase de lista y bitácora de asistencia táctil.          |
-| **Crew**             | Profesor Auxiliar        | Lamine Yamal          | `yamal@goolima.com`           | `Pass1234!` | `dev-yamal`           | Pase de lista auxiliar y visualización de grupos asignados.         |
-| **Client**           | Tutor / Padre de Familia | Lionel Messi (Tutor)  | `tutor@goolima.com`           | `Pass1234!` | `dev-tutor-messi`     | Consulta de asistencias, estados de cuenta y comprobantes de pago.  |
+| **Admin**            | Coordinador General      | Kylian Mbappé         | `mbappe@academy.com`          | `Pass1234!` | `dev-mbappe`          | Gestión de altas, cobros, alumnos y asignación de profesores.       |
+| **Admin (CoreProduct)**  | Coordinador General      | Kylian Mbappé         | `mbappe@core-product.com`          | `Pass1234!` | `dev-mbappe-core-product`  | Validación de acceso cross-suite desde el lobby general.            |
+| **Crew**             | Profesor Principal       | Erling Haaland        | `haaland@academy.com`         | `Pass1234!` | `dev-haaland`         | Registro de pase de lista y bitácora de asistencia táctil.          |
+| **Crew**             | Profesor Auxiliar        | Lamine Yamal          | `yamal@academy.com`           | `Pass1234!` | `dev-yamal`           | Pase de lista auxiliar y visualización de grupos asignados.         |
+| **Client**           | Tutor / Padre de Familia | Lionel Messi (Tutor)  | `tutor@academy.com`           | `Pass1234!` | `dev-tutor-messi`     | Consulta de asistencias, estados de cuenta y comprobantes de pago.  |
 
 ---
 
-## 🏆 2. Suite ProFees (Tenants SaaS Independientes)
+## 🏆 2. Suite CoreProduct (Tenants SaaS Independientes)
 
-Cuentas representativas de clubes, academias y gimnasios autónomos dentro del Edificio ProFees:
+Cuentas representativas de clubes, academias y gimnasios autónomos dentro del Edificio CoreProduct:
 
 | Negocio / Tenant ID                                     | Disciplina     | Nombre / Dueño  | Correo Electrónico    | Contraseña  | Tier SaaS                    |
 | :------------------------------------------------------ | :------------- | :-------------- | :-------------------- | :---------- | :--------------------------- |
-| **Academia de Tenis Alcaraz** (`tenant-alcaraz-tennis`) | Tenis          | Carlos Alcaraz  | `alcaraz@profees.com` | `Pass1234!` | **Standard** (30 días trial) |
-| **Club Femenil Alexia Putellas** (`tenant-alexia-fc`)   | Fútbol Femenil | Alexia Putellas | `alexia@profees.com`  | `Pass1234!` | **Standard** (30 días trial) |
+| **Academia de Tenis Alcaraz** (`tenant-alcaraz-tennis`) | Tenis          | Carlos Alcaraz  | `alcaraz@core-product.com` | `Pass1234!` | **Standard** (30 días trial) |
+| **Club Femenil Alexia Putellas** (`tenant-alexia-fc`)   | Fútbol Femenil | Alexia Putellas | `alexia@core-product.com`  | `Pass1234!` | **Standard** (30 días trial) |
 
 ---
 
@@ -66,6 +66,6 @@ Usuarios creados para validar el comportamiento visual de la app ante distintos 
 # Para entorno local (Firebase Emulators)
 nx run seeds:all
 
-# Para entorno remoto de desarrollo (Firebase pro-fees-test)
+# Para entorno remoto de desarrollo (Firebase core-product-test)
 nx run seeds:run-dev-remote
 ```

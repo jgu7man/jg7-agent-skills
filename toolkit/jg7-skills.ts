@@ -15,6 +15,7 @@ export enum CliCommandEnum {
 
 export enum SkillPresetEnum {
   FULL = 'full',
+  CODESTYLE = 'codestyle',
   NX_CORE = 'nx-core',
   PRODUCT = 'product',
 }
@@ -37,6 +38,16 @@ export interface SkillsJsonManifest {
 
 const PRESET_SKILLS_RECORD: Record<SkillPresetEnum, readonly string[]> = {
   [SkillPresetEnum.FULL]: [],
+  [SkillPresetEnum.CODESTYLE]: [
+    'tech-plan',
+    'sanitize-architecture',
+    'code-review',
+    'review-loop',
+    'refine-specs',
+    'bruno-qa',
+    'friendly-git',
+    'pwa-install',
+  ],
   [SkillPresetEnum.NX_CORE]: [
     'tech-plan',
     'execute-ticket',
@@ -106,22 +117,29 @@ function discoverSkills(rootDir: string): readonly SkillMetadata[] {
 
 function runList(): void {
   const skills = discoverSkills(SKILLS_ROOT);
-  console.log(`\n📦 Marxa Digital Skills Toolkit (${skills.length} comandos de acción en /):\n`);
+  console.log(`\n📦 JG7 Engineering Skills Toolkit (${skills.length} comandos de acción en /):\n`);
   for (const skill of skills) {
     const shortDesc = skill.description.length > 95 ? `${skill.description.slice(0, 92)}...` : skill.description;
-    console.log(`  /${skill.name.padEnd(24)} -> ${shortDesc}`);
+    console.log(`  /${skill.name.padEnd(26)} -> ${shortDesc}`);
   }
   console.log('');
 }
 
-function runUseWorkspace(targetWorkspace: string, presetArg?: string): void {
-  const preset: SkillPresetEnum =
-    presetArg === SkillPresetEnum.NX_CORE
-      ? SkillPresetEnum.NX_CORE
-      : presetArg === SkillPresetEnum.PRODUCT
-        ? SkillPresetEnum.PRODUCT
-        : SkillPresetEnum.FULL;
+function resolvePreset(presetArg?: string): SkillPresetEnum {
+  if (presetArg === SkillPresetEnum.CODESTYLE) {
+    return SkillPresetEnum.CODESTYLE;
+  }
+  if (presetArg === SkillPresetEnum.NX_CORE) {
+    return SkillPresetEnum.NX_CORE;
+  }
+  if (presetArg === SkillPresetEnum.PRODUCT) {
+    return SkillPresetEnum.PRODUCT;
+  }
+  return SkillPresetEnum.FULL;
+}
 
+function runUseWorkspace(targetWorkspace: string, presetArg?: string): void {
+  const preset = resolvePreset(presetArg);
   const resolvedWorkspace = path.resolve(targetWorkspace);
   const agentsDir = path.join(resolvedWorkspace, '.agents');
   fs.mkdirSync(agentsDir, { recursive: true });
@@ -143,6 +161,9 @@ function resolveSelectedSkillNames(selectorArg?: string): readonly string[] {
   const allSkills = discoverSkills(SKILLS_ROOT).map((s) => s.folderName);
   if (!selectorArg || selectorArg === SkillPresetEnum.FULL) {
     return allSkills;
+  }
+  if (selectorArg === SkillPresetEnum.CODESTYLE) {
+    return PRESET_SKILLS_RECORD[SkillPresetEnum.CODESTYLE];
   }
   if (selectorArg === SkillPresetEnum.NX_CORE) {
     return PRESET_SKILLS_RECORD[SkillPresetEnum.NX_CORE];
@@ -181,7 +202,7 @@ function runInstallInProject(targetWorkspace: string, selectorArg?: string): voi
 }
 
 function runInstallGlobal(repoUrl?: string): void {
-  const toolkitHome = path.join(os.homedir(), '.mxd-toolkit');
+  const toolkitHome = path.join(os.homedir(), '.jg7-toolkit');
   if (repoUrl) {
     if (fs.existsSync(path.join(toolkitHome, '.git'))) {
       execSync('git pull --rebase', { cwd: toolkitHome, stdio: 'inherit' });
@@ -204,7 +225,7 @@ function runInstallGlobal(repoUrl?: string): void {
 function runPackPlugin(targetPluginDir?: string): void {
   const outDir = targetPluginDir
     ? path.resolve(targetPluginDir)
-    : path.join(GLOBAL_CONFIG_ROOT, 'plugins', 'marxa-digital-toolkit');
+    : path.join(GLOBAL_CONFIG_ROOT, 'plugins', 'jg7-engineering-toolkit');
 
   const skillsOutDir = path.join(outDir, 'skills');
   fs.mkdirSync(skillsOutDir, { recursive: true });
@@ -255,7 +276,7 @@ function main(): void {
       break;
     default:
       console.log(
-        'Uso: npx tsx toolkit/mxd-skills.ts <list | install [path] [full|nx-core|product|s1,s2] | use [path] [full|nx-core|product] | install-global [repoUrl] | pack-plugin [outDir] | sync>'
+        'Uso: npx tsx toolkit/jg7-skills.ts <list | install [path] [full|codestyle|nx-core|product|s1,s2] | use [path] [full|codestyle|nx-core|product] | install-global [repoUrl] | pack-plugin [outDir] | sync>'
       );
   }
 }

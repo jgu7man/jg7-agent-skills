@@ -1,21 +1,21 @@
 ---
 type: architecture
 title: '📦 09. Arquitectura de Features e Infraestructura Compartida'
-description: 'Módulos transversales del scope @mx-valley/*: AuthState reactivo, Firestore Resource Service, Utilidades puras y Seeds.'
-tags: [valle, shared, auth, firestore, util, arquitectura, libs]
+description: 'Módulos transversales del scope @jg7/*: AuthState reactivo, Firestore Resource Service, Utilidades puras y Seeds.'
+tags: [jg7-core, shared, auth, firestore, util, arquitectura, libs]
 generated: { by: 'human:jguzman', at: '2026-08-20T03:45:00.000Z' }
 lastUpdate: '2026-08-20T03:45:00.000Z'
-spaceKey: GOOL
+spaceKey: DOCS
 folderId: '382074881'
 ---
 
 # 📦 09. Arquitectura de Features e Infraestructura Compartida (`libs/shared/*`)
 
-El directorio `libs/shared/` contiene los cimientos transversales de **MX Business Valley**, empaquetados bajo el scope `@mx-valley/*`.
+El directorio `libs/shared/` contiene los cimientos transversales de **MX el Monorepo Nx**, empaquetados bajo el scope `@jg7/*`.
 
 ---
 
-## 1. Módulo de Autenticación (`@mx-valley/auth`)
+## 1. Módulo de Autenticación (`@jg7/auth`)
 
 Maneja el ciclo de vida de la sesión con **Firebase Authentication**, independiente del dominio o la marca:
 
@@ -35,7 +35,7 @@ Maneja el ciclo de vida de la sesión con **Firebase Authentication**, independi
 
 ---
 
-## 2. Módulo de Layout (`@mx-valley/layout`)
+## 2. Módulo de Layout (`@jg7/layout`)
 
 Provee las carcasas estructurales que envuelven la aplicación en el navegador:
 
@@ -50,7 +50,7 @@ Provee las carcasas estructurales que envuelven la aplicación en el navegador:
 
 ---
 
-## 3. Módulo de Sistema de Diseño (`@mx-valley/ui`)
+## 3. Módulo de Sistema de Diseño (`@jg7/core-ui`)
 
 Diseño atómico bajo la filosofía de **Glassmorphism y Alto Contraste**:
 
@@ -70,7 +70,7 @@ Diseño atómico bajo la filosofía de **Glassmorphism y Alto Contraste**:
 
 ---
 
-## 4. Contratos de Backend (`@mx-valley/cf-contracts`)
+## 4. Contratos de Backend (`@jg7/cf-contracts`)
 
 Librería de **TypeScript Puro** (sin dependencias de `@angular/core` ni Angular Fire):
 

@@ -3,7 +3,7 @@ name: bruno-qa
 description: "Validador funcional automatizado de Cloud Functions (functions/[scope]) y endpoints HTTP/Callable usando Bruno CLI (bru run) contra Firebase Emulators. Coordina con qa-emulator-operator para levantar emuladores y seeds, diseña y ejecuta colecciones .bru verificando contratos Zod (200 Happy Path vs 400 Schema Rejection), reglas Auth/RBAC (401/403), efectos reales en Firestore y desocupación obligatoria de puertos al finalizar. Se activa con '/bruno-qa', '/cf-qa', 'validar cloud functions con bruno' o como etapa de validación funcional backend del pipeline continuo."
 ---
 
-# 🧪 MXD Bruno Cloud Functions QA (`bruno-qa`)
+# 🧪 JG7 Bruno Cloud Functions QA (`bruno-qa`)
 
 Este skill gobierna la **validación funcional de backend (`functions/[scope]`)** en la cadena de desarrollo continuo. Mientras `qa-regression-tester` y `browser` validan la interfaz web, `bruno-qa` certifica las Cloud Functions (HTTP endpoints y `onCall` callables) ejecutando colecciones de **Bruno** contra los emuladores locales de Firebase.
 

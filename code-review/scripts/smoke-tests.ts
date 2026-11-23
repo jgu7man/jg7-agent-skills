@@ -1,6 +1,6 @@
 #!/usr/bin/env ts-node
 /**
- * Smoke Tests para Cloud Functions y Endpoints en Emuladores Locales del Valle.
+ * Smoke Tests para Cloud Functions y Endpoints en Emuladores Locales de la plataforma.
  *
  * Ejecuta verificaciones de conectividad HTTP contra los emuladores locales de Firebase.
  * Uso: pnpm exec ts-node scripts/smoke-tests.ts
@@ -10,8 +10,8 @@ import { URL } from 'node:url';
 
 const EMULATOR_BASE =
   process.env['FUNCTIONS_EMULATOR_URL'] ||
-  'http://127.0.0.1:5001/pro-fees-test/us-central1';
-const PROJECT_ID = process.env['FIREBASE_PROJECT_ID'] || 'pro-fees-test';
+  'http://127.0.0.1:5001/core-product-test/us-central1';
+const PROJECT_ID = process.env['FIREBASE_PROJECT_ID'] || 'core-product-test';
 
 const colors = {
   reset: '\x1b[0m',
@@ -122,7 +122,7 @@ async function testFunctionsConnectivity() {
 
 async function main() {
   log('=================================================', 'magenta');
-  log('   Smoke Tests de Backend - Mx Business Valley  ', 'magenta');
+  log('   Smoke Tests de Backend - el Monorepo Nx (Estándar JG7)  ', 'magenta');
   log('=================================================', 'magenta');
 
   const results = [];

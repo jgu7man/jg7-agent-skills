@@ -1,11 +1,11 @@
 ---
 name: jira-plan-proposal
-description: Guía para auditar, buscar, proponer y estructurar tickets de Jira (Historias de Usuario y Épicas) dentro de planes de implementación técnica en Business Valley, respetando criterios de granularidad de UX y confirmación previa del usuario.
+description: Guía para auditar, buscar, proponer y estructurar tickets de Jira (Historias de Usuario y Épicas) dentro de planes de implementación técnica en el Monorepo Nx, respetando criterios de granularidad de UX y confirmación previa del usuario.
 ---
 
 # Jira Plan Proposal Skill
 
-Utiliza este skill cada vez que planifiques una nueva funcionalidad, módulo, refactorización o flujo de usuario dentro del monorepo Business Valley (`@mx-valley/*`, `@mx-profees/*`, `@profees/*`, `@misspedidos/*`).
+Utiliza este skill cada vez que planifiques una nueva funcionalidad, módulo, refactorización o flujo de usuario dentro del monorepo el Monorepo Nx (`@jg7/*`, `@shared/*`, `@modules/*`, `@modules/orders/*`).
 
 ---
 
@@ -17,7 +17,7 @@ Utiliza este skill cada vez que planifiques una nueva funcionalidad, módulo, re
    - Si no existe un ticket previo, **debes proponer explícitamente el ticket o tickets requeridos dentro del documento `implementation_plan.md`**.
 3. **Bloqueo de Creación**:
    - **Queda estrictamente prohibido crear los tickets en Jira antes de que el usuario revise y apruebe el plan de implementación**.
-   - Solo tras la confirmación explícita del plan por parte del usuario, se ejecutan las herramientas del MCP `mxd-jira` para crear las entidades en Jira.
+   - Solo tras la confirmación explícita del plan por parte del usuario, se ejecutan las herramientas del MCP `jira-mcp-server` para crear las entidades en Jira.
 
 ---
 
@@ -50,7 +50,7 @@ Utiliza este skill cada vez que planifiques una nueva funcionalidad, módulo, re
   > [!IMPORTANT]
   > Estos tickets se proponen para estructurar el desarrollo y **no se crearán en Jira hasta que confirmes y apruebes este plan**.
 
-  - **Épica Propuesta**: `[PFGO] Nombre Descriptivo de la Épica`
+  - **Épica Propuesta**: `[PROJ] Nombre Descriptivo de la Épica`
     - **HU 1**: Título de la Historia de Usuario 1 (Rol + Acción + Valor)
     - **HU 2**: Título de la Historia de Usuario 2
     - **HU 3**: Título de la Historia de Usuario 3
@@ -76,9 +76,9 @@ Al crear o actualizar tickets en Jira tras la aprobación del plan:
 
 Una vez que el usuario aprueba el plan y se crean los tickets en Jira:
 
-1. Toma la clave del ticket principal (o la primera HU del flujo): ej. `PFGO-54`.
+1. Toma la clave del ticket principal (o la primera HU del flujo): ej. `PROJ-54`.
 2. Crea la rama de git incorporando dicha clave:
-   - Formato: `feature/PFGO-54-descripcion-corta`
+   - Formato: `feature/PROJ-54-descripcion-corta`
    - Recuerda usar `git push -u origin <branch-name>` en el primer push.
 3. Todo commit subsecuente referenciará la clave en el scope o footer:
-   - `feat(PFGO-54): descripción concisa` o con footer `Refs: PFGO-54`.
+   - `feat(PROJ-54): descripción concisa` o con footer `Refs: PROJ-54`.
