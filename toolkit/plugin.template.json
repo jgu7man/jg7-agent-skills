@@ -1,0 +1,31 @@
+{
+  "name": "marxa-digital-toolkit",
+  "displayName": "Marxa Digital Engineering & Product Toolkit",
+  "version": "1.0.0",
+  "description": "Suite integral de skills y subagentes de desarrollo continuo para monorepos Nx/Angular y Firebase de Marxa Digital: Definición Técnica (/tech-plan), Ejecución Autónoma (/execute-ticket), Bucle Code Review ⇄ Coder (/review-loop), Saneamiento Arquitectónico y Zod (/sanitize-architecture), QA de Cloud Functions con Bruno (/bruno-qa), Refinamiento de Negocio (/refine-specs), Despliegues (/deploy), Git Ejecutivo (/friendly-git), Jira/Confluence (/jira) e Ilustraciones (/illustrations).",
+  "suggestedPrompts": [
+    "/tech-plan",
+    "/execute-ticket",
+    "/review-loop",
+    "/code-review",
+    "/sanitize-architecture",
+    "/bruno-qa",
+    "/refine-specs",
+    "/deploy",
+    "/friendly-git",
+    "/jira",
+    "/illustrations"
+  ],
+  "keywords": [
+    "marxa-digital",
+    "nx",
+    "angular",
+    "zod",
+    "firebase",
+    "code-review",
+    "bruno",
+    "jira",
+    "confluence",
+    "ci-cd"
+  ]
+}

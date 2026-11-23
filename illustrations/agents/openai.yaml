@@ -1,0 +1,6 @@
+interface:
+  display_name: "Ilustraciones"
+  short_description: "Genera ilustraciones editoriales minimalistas, absurdas y dibujadas a mano con Xiaohei"
+  default_prompt: "Usa $illustrations para diseñar y generar ilustraciones editoriales estilo boceto con Xiaohei para este artículo."
+policy:
+  allow_implicit_invocation: true
