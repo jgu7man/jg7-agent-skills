@@ -1,9 +1,9 @@
 ---
 name: tech-plan
-description: "Arquitecto de Definición Técnica y Plan de Implementación pre-código (Shift-Left) para cualquier monorepo Nx de Marxa Digital. Traduce historias de usuario o requerimientos en un blueprint de bajo nivel antes de programar: (1) selección minimalista de librerías por estándar scope + type (marxa-digital/[scope], shared/*/[scope], modules/[scope]/*, functions/[scope]), (2) diseño de contratos canónicos (*.model.ts) y schemas Zod (*.schema.ts) obligatorios para persistencia en DB, (3) estrategia de BoundaryTransformer y White-Label, (4) topología de componentes Angular OnPush/Signals y engines puros, y (5) plan de verificación para los subagentes de Code Review, Navegador y Bruno (CFs). Se activa con '/implementation-plan', '/tech-def', '/plan', 'definición técnica' o 'plan de implementación'."
+description: "Arquitecto de Definición Técnica y Plan de Implementación pre-código (Shift-Left) para cualquier monorepo Nx de JG7. Traduce historias de usuario o requerimientos en un blueprint de bajo nivel antes de programar: (1) selección minimalista de librerías por estándar scope + type (jg7/[scope], shared/*/[scope], modules/[scope]/*, functions/[scope]), (2) diseño de contratos canónicos (*.model.ts) y schemas Zod (*.schema.ts) obligatorios para persistencia en DB, (3) estrategia de BoundaryTransformer y White-Label, (4) topología de componentes Angular OnPush/Signals y engines puros, y (5) plan de verificación para los subagentes de Code Review, Navegador y Bruno (CFs). Se activa con '/implementation-plan', '/tech-def', '/plan', 'definición técnica' o 'plan de implementación'."
 ---
 
-# 📐 MXD Implementation Plan & Technical Definition (`tech-plan`)
+# 📐 JG7 Implementation Plan & Technical Definition (`tech-plan`)
 
 Este skill actúa como el **Arquitecto Shift-Left** dentro de la cadena de desarrollo continuo. Su misión es diseñar la **Definición Técnica / Plan de Implementación** *antes* de que el subagente Coder escriba una sola línea de código, asegurando que las reglas de arquitectura ([sanitize-architecture](file:///Users/jgu7man/.gemini/config/skills/sanitize-architecture/SKILL.md)) y calidad ([code-review](file:///Users/jgu7man/.gemini/config/skills/code-review/SKILL.md)) nazcan desde el plano y no como correcciones post-código.
 
@@ -28,21 +28,21 @@ flowchart LR
 
 ## 🏛️ 1. Estándar Agnóstico de Librerías Nx por `scope` y `type`
 
-Todo Plan de Implementación es **agnóstico del proyecto** (aplica igual a `miss-pedidos`, `business-valley`, `profees` o cualquier monorepo futuro) y organiza el código en **4 niveles jerárquicos** con librerías minimalistas:
+Todo Plan de Implementación es **agnóstico del proyecto** (aplica igual a `miss-pedidos`, `nx-monorepo`, `core-product` o cualquier monorepo futuro) y organiza el código en **4 niveles jerárquicos** con librerías minimalistas:
 
 ### Niveles Jerárquicos (`Scope Hierarchy`)
 ```text
-1. marxa-digital/[scope]/{api,feature,data-access,domain,ui,utils}
-   └── Core transversal multi-proyecto de Marxa Digital.
+1. jg7/[scope]/{api,feature,data-access,domain,ui,utils}
+   └── Core transversal multi-proyecto de JG7.
        🚫 Prohibido importar de shared/*, modules/* o functions/*.
 
 2. shared/{api,feature,data-access,domain,ui,utils}/[scope]
    └── Piezas transversales compartidas dentro del monorepo actual.
-       ✅ Puede importar de marxa-digital/*. 🚫 Prohibido importar de modules/*.
+       ✅ Puede importar de jg7/*. 🚫 Prohibido importar de modules/*.
 
 3. modules/[scope]/{api,feature,data-access,domain,ui,utils}
    └── Módulo de dominio/negocio específico.
-       ✅ Puede importar de marxa-digital/*, shared/* y de modules/[otro-scope]/api.
+       ✅ Puede importar de jg7/*, shared/* y de modules/[otro-scope]/api.
        🚫 Prohibido importar internos (feature, data-access, ui, domain) de otro módulo.
 
 4. functions/[scope]
@@ -70,7 +70,7 @@ Todo Plan de Implementación es **agnóstico del proyecto** (aplica igual a `mis
 Para evitar corrupción de datos y documentos heterogéneos en Firestore/RTDB, **todo plan que involucre base de datos o payloads de Cloud Functions debe especificar sus schemas Zod**:
 
 1. **Ubicación Canónica (`domain`)**:
-   - Todo contrato persistido en DB (`*.model.ts`) debe tener su schema Zod hermano en `*.schema.ts` dentro de `domain` (`marxa-digital/[scope]/domain`, `shared/domain/[scope]` o `modules/[scope]/domain`).
+   - Todo contrato persistido en DB (`*.model.ts`) debe tener su schema Zod hermano en `*.schema.ts` dentro de `domain` (`jg7/[scope]/domain`, `shared/domain/[scope]` o `modules/[scope]/domain`).
 2. **String Enums + Zod**:
    - Declarar siempre catálogos como `export enum StatusEnum { ... }` y validarlos en Zod con `z.nativeEnum(StatusEnum)` (nunca union types sueltos).
 3. **Write Gate (`Schema.parse`)**:
@@ -86,7 +86,7 @@ Cada vez que generes un plan técnico, estructura la salida con estas **5 seccio
 
 ### Sección 1: Mapa de Scopes y Librerías Impactadas
 Lista exactamente qué librerías se modifican o crean siguiendo `kebab-case.ts`:
-- `marxa-digital/[scope]/...`
+- `jg7/[scope]/...`
 - `shared/[type]/[scope]/...`
 - `modules/[scope]/{domain,data-access,ui,feature,api,utils}/...`
 - `functions/[scope]/...`

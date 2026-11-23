@@ -1,26 +1,26 @@
 ---
 name: jira-board-audit
-description: Guía y playbook para auditar tableros de Jira vs el repositorio de código, reconciliar commits de git con tickets, identificar gaps de tiempo trabajado y regularizar los estados del backlog mediante el servidor MCP @mxd/jira-mcp y credenciales privadas en ~/.jira.env.
+description: Guía y playbook para auditar tableros de Jira vs el repositorio de código, reconciliar commits de git con tickets, identificar gaps de tiempo trabajado y regularizar los estados del backlog mediante el servidor MCP @jg7/jira-mcp y credenciales privadas en ~/.jira.env.
 ---
 
 # Jira Board Audit & Codebase Reconciliation Skill
 
-Use este skill cuando el usuario pida actuar como **Project Manager Auditor**, auditar un tablero de Jira (`PFGO`, `MPS`), reconciliar los avances del código con el estado del backlog remoto y regularizar el tiempo trabajado.
+Use este skill cuando el usuario pida actuar como **Project Manager Auditor**, auditar un tablero de Jira (`PROJ`, `MPS`), reconciliar los avances del código con el estado del backlog remoto y regularizar el tiempo trabajado.
 
 ---
 
 ## 🔒 1. Credenciales y Seguridad
 
-Por estándar mandatorio de Marxa Digital:
+Por estándar mandatorio de JG7:
 
 - **Estrategia Segura por Defecto**: Las credenciales de API de Atlassian deben guardarse exclusivamente en el archivo local de la máquina del desarrollador: `~/.jira.env` (fuera del control de versiones).
 - **Formato del archivo `~/.jira.env`**:
   ```env
-  JIRA_USER=tu-email@marxa.digital
+  JIRA_USER=tu-email@jg7.digital
   JIRA_TOKEN=tu_atlassian_api_token
-  JIRA_URL=https://marxa-digital.atlassian.net
+  JIRA_URL=https://JG7.atlassian.net
   ```
-- El servidor MCP local `@mxd/jira-mcp` (`tools/mxd-jira-mcp`) lee automáticamente `~/.jira.env` sin necesidad de exponer secretos en el chat ni modificar configuraciones compartidas.
+- El servidor MCP local `@jg7/jira-mcp` (`tools/jira-mcp-server-mcp`) lee automáticamente `~/.jira.env` sin necesidad de exponer secretos en el chat ni modificar configuraciones compartidas.
 
 ---
 
@@ -29,7 +29,7 @@ Por estándar mandatorio de Marxa Digital:
 ```mermaid
 flowchart TD
     A[Inicio: Solicitud de Auditoría] --> B[1. Extraer Commits & PRs]
-    B --> C[2. Mapear Claves de Ticket PFGO/MPS]
+    B --> C[2. Mapear Claves de Ticket PROJ/MPS]
     C --> D[3. Consultar Tablero de Jira]
     D --> E[4. Matriz Comparativa: Esperado vs Real]
     E --> F[5. Identificar Gaps de Tiempo Trabajado]
@@ -42,7 +42,7 @@ flowchart TD
 Ejecutar inspección de commits y PRs del repositorio:
 
 ```bash
-git log --grep="PFGO" --oneline -n 100
+git log --grep="PROJ" --oneline -n 100
 git log --grep="MPS" --oneline -n 100
 ```
 
@@ -54,33 +54,33 @@ Categorizar cada ticket del proyecto en una tabla de auditoría:
 
 | Ticket Key | Resumen / Funcionalidad | Estado Esperado en Jira | Estado Real en Código   | Commits Asociados | Estatus Reconciliado |
 | :--------- | :---------------------- | :---------------------- | :---------------------- | :---------------- | :------------------- |
-| `PFGO-X`   | Resumen de la tarea     | En Progreso / Backlog   | Totalmente Implementado | `hash`            | ✅ Mover a `DONE`    |
+| `PROJ-X`   | Resumen de la tarea     | En Progreso / Backlog   | Totalmente Implementado | `hash`            | ✅ Mover a `DONE`    |
 
 ### Paso 3: Gap Analysis & Regularización de Tiempo Trabajado
 
 Si se detectan desarrollos de alta complejidad en el repositorio que **no contaban con un ticket formal** (ej. estabilización de pase a prod, pipelines CI/CD dinámicos, scripts de migración masiva CSV, onboarding automatizado):
 
 1. Calcular las horas estimadas invertidas por bloque técnico.
-2. Definir una propuesta de **tickets de regularización** estructurados con el estándar MXD (`[Categoría] Título descriptivo`, Historia de Usuario o Tarea Técnica, Contexto Técnico, Commits y Criterios de Aceptación).
+2. Definir una propuesta de **tickets de regularización** estructurados con el estándar JG7 (`[Categoría] Título descriptivo`, Historia de Usuario o Tarea Técnica, Contexto Técnico, Commits y Criterios de Aceptación).
 3. Presentar la matriz al usuario para aprobación.
 
 ---
 
-## ⚡ 3. Sincronización Remota vía MCP (`@mxd/jira-mcp`)
+## ⚡ 3. Sincronización Remota vía MCP (`@jg7/jira-mcp`)
 
-Una vez aprobada la auditoría por el usuario, realizar la actualización del tablero mediante el MCP `@mxd/jira-mcp` sin necesidad de scripts residuales:
+Una vez aprobada la auditoría por el usuario, realizar la actualización del tablero mediante el MCP `@jg7/jira-mcp` sin necesidad de scripts residuales:
 
 1. **Crear Historias o Tareas de Regularización**:
-   - Usar `mxd_create_story` o `mxd_create_technical_task`.
+   - Usar `jira_create_issue` o `jira_create_issue`.
    - Especificar `projectKey`, `summary` con prefijo de dominio canónico, `userStory` / `technicalContext` y `acceptanceCriteria`.
 
 2. **Transicionar Tareas Completadas a `DONE`**:
-   - Usar `mxd_transition_issue`.
-   - Pasar `issueKey` (ej. `PFGO-12`) y `targetState: "DONE"`.
+   - Usar `jira_transition_issue`.
+   - Pasar `issueKey` (ej. `PROJ-12`) y `targetState: "DONE"`.
    - El motor resuelve dinámicamente las transiciones del workflow de Atlassian (`Done`, `Listo`, `Closed`).
 
 3. **Vincular PRs de GitHub**:
-   - Usar `mxd_link_pr` pasando la URL del PR de GitHub para trazabilidad bidireccional.
+   - Usar `jira_create_remote_issue_link` pasando la URL del PR de GitHub para trazabilidad bidireccional.
 
 ---
 

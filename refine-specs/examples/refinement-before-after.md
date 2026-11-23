@@ -32,7 +32,7 @@ export enum RequestAccessTab { GOOGLE = 'GOOGLE', EMAIL = 'EMAIL' }
 
 **Después:**
 ```ts
-import { AccessRequestSource } from '@marxa/auth-engine';
+import { AccessRequestSource } from '@jg7/auth-engine';
 protected readonly RequestTab = AccessRequestSource;
 ```
 

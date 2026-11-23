@@ -5,13 +5,13 @@ description: Orquesta y monitorea el flujo de CI/CD para el entorno BETA (Stagin
 
 # 🟡 Skill: CI/CD & Despliegue en BETA (`/beta-deploy`)
 
-Utiliza este skill siempre que necesites **preparar, desplegar o certificar una versión candidata (Release Candidate) en el entorno BETA** (`goolima-crm-beta.web.app` / `pro-fees`).
+Utiliza este skill siempre que necesites **preparar, desplegar o certificar una versión candidata (Release Candidate) en el entorno BETA** (`academy-crm-beta.web.app` / `core-product`).
 
 ---
 
 ## 🎯 1. Filosofía de BETA: Certificación Previa con Datos Reales
 
-> **REGLA DE ORO:** El entorno BETA corre en el proyecto de producción (`pro-fees`), pero bajo un sitio y colección de releases totalmente aislados (`dashboard-beta` / `goolima-crm-beta`). Permite a QA certificar la aplicación con la base de datos real sin tocar a los usuarios productivos.
+> **REGLA DE ORO:** El entorno BETA corre en el proyecto de producción (`core-product`), pero bajo un sitio y colección de releases totalmente aislados (`dashboard-beta` / `academy-crm-beta`). Permite a QA certificar la aplicación con la base de datos real sin tocar a los usuarios productivos.
 
 ---
 
@@ -32,7 +32,7 @@ Al invocar `/beta-deploy`, Antigravity ejecutará el siguiente flujo estructurad
 ### Paso 2: Auditoría de Tickets en Jira (`fixVersion`)
 1. **Extraer los tickets incluidos comparando contra `main`**:
    ```bash
-   git log origin/main..release/vX.Y.Z --oneline | grep -oE '(PFGO|MPS)-[0-9]+' | sort -u
+   git log origin/main..release/vX.Y.Z --oneline | grep -oE '(PROJ|MPS)-[0-9]+' | sort -u
    ```
 2. **Actualizar Jira vía MCP**:
    - Asignar la versión comercial (`fixVersion: ['vX.Y']`) a cada uno de los tickets encontrados.
@@ -45,7 +45,7 @@ Al invocar `/beta-deploy`, Antigravity ejecutará el siguiente flujo estructurad
      --head release/vX.Y.Z \
      --title "Release vX.Y.Z: Certificación en Entorno Beta" \
      --body "## 🔗 Jira — Tickets incluidos en este Release
-$(git log origin/main..release/vX.Y.Z --oneline | grep -oE '(PFGO|MPS)-[0-9]+' | sort -u | sed 's/^/* /')"
+$(git log origin/main..release/vX.Y.Z --oneline | grep -oE '(PROJ|MPS)-[0-9]+' | sort -u | sed 's/^/* /')"
    ```
 2. Esperar a que el workflow `pr-integrity-dry-run.yml` valide la rama.
 
@@ -64,15 +64,15 @@ $(git log origin/main..release/vX.Y.Z --oneline | grep -oE '(PFGO|MPS)-[0-9]+' |
    - Validación estricta del patrón SemVer (`release/vX.Y.Z`).
    - Resolución automática de la versión incremental en Firestore (`vX.Y.Z-beta.N`).
    - Generación de `config.json` de producción.
-   - Compilación y deploy a `profees-goolima-lobby-beta` (o `dashboard-beta`).
+   - Compilación y deploy a `core-product-academy-lobby-beta` (o `dashboard-beta`).
    - **Detección y despliegue automático de Reglas e Índices** (`firestore:rules,firestore:indexes,storage`) si fueron modificados en el Release.
-   - **Detección, compilación y despliegue automático de Cloud Functions** (`functions:profees-functions`) si fueron modificadas en el Release.
-   - Registro de certificación en Firestore (`apps/goolima/releases`).
+   - **Detección, compilación y despliegue automático de Cloud Functions** (`functions:core-product-functions`) si fueron modificadas en el Release.
+   - Registro de certificación en Firestore (`apps/academy/releases`).
 3. Si ocurre un fallo en el build, extraer logs con `gh run view --log-failed`.
 
 ### Paso 6: Verificación UAT y Punto de Control
 1. **Comprobar el despliegue**:
-   - Confirmar en `https://goolima-crm-beta.web.app` que el sidebar muestre el identificador:
+   - Confirmar en `https://academy-crm-beta.web.app` que el sidebar muestre el identificador:
      **`BETA vX.Y.Z-beta.N`**.
 2. **Notificar a QA / Liderazgo**:
    - Emitir el resumen con la versión `-beta.N` y el listado de tickets listos para pruebas UAT.

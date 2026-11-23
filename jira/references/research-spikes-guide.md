@@ -1,6 +1,6 @@
 ---
 name: feature-research
-description: Elabora la investigación técnica y de negocio de entrada (Research & Context Document / Spike) para iniciativas en Jira Discovery (MXPD). Analiza viabilidad, precedentes en el sistema, arquitectura preliminar, módulos NX y contratos afectados, y riesgos. Se publica o adjunta al ticket de Discovery y sirve como contexto fundacional para el refinamiento técnico.
+description: Elabora la investigación técnica y de negocio de entrada (Research & Context Document / Spike) para iniciativas en Jira Discovery (DISC). Analiza viabilidad, precedentes en el sistema, arquitectura preliminar, módulos NX y contratos afectados, y riesgos. Se publica o adjunta al ticket de Discovery y sirve como contexto fundacional para el refinamiento técnico.
 ---
 
 # 🔬 Skill: Documentación de Entrada e Investigación (`/feature-research`)
@@ -14,7 +14,7 @@ Utiliza este skill siempre que se proponga una nueva idea, iniciativa o requerim
 La **Documentación de Entrada (Research Spike)** no es una especificación cerrada ni una historia de usuario:
 * **Misión**: Reducir la incertidumbre técnica y de negocio antes de estimar o refinar. Proporciona el **contexto arquitectónico real** del sistema para que el equipo no diseñe sobre suposiciones.
 * **Consumidores**:
-  1. **Tablero Jira Discovery (`MXPD`)**: Se adjunta o vincula como evidencia de respaldo para sustentar el *Reach*, *Impact* y calibrar la *Confidence*.
+  1. **Tablero Jira Discovery (`DISC`)**: Se adjunta o vincula como evidencia de respaldo para sustentar el *Reach*, *Impact* y calibrar la *Confidence*.
   2. **Refinamiento Técnico (`jira-story-structure`)**: Sirve de insumo directo para redactar los contratos de datos, diagramas ASCII y planes de implementación sin partir de cero.
   3. **Desarrolladores**: Contexto vivo sobre módulos tocados, APIs externas y riesgos de deuda técnica.
 
@@ -26,7 +26,7 @@ Todo entregable de investigación debe estructurarse con las siguientes 6 seccio
 
 ```markdown
 # 🔬 Documento de Investigación: [Título de la Iniciativa]
-> **Iniciativa / Idea**: `[MXPD-XXX o Nombre]`  
+> **Iniciativa / Idea**: `[DISC-XXX o Nombre]`  
 > **Área / Módulo**: `[Ej. Facturación / Ledger / Auth / Checkout]`  
 > **Fecha & Autor**: `[Fecha] — Jorge Guzmán & Antigravity`  
 > **Estado de Viabilidad**: `[VIABLE | VIABLE_CON_RESERVAS | NO_VIABLE]`
@@ -41,7 +41,7 @@ Todo entregable de investigación debe estructurarse con las siguientes 6 seccio
 ---
 
 ## 2. Precedentes en el Sistema & Estado del Arte (Benchmarking Interno/Externo)
-- **Soluciones similares existentes en la suite**: ¿Existen módulos en PFGO, MPS o Goolima que resuelvan algo análogo? (Evitar reinventar la rueda).
+- **Soluciones similares existentes en la suite**: ¿Existen módulos en PROJ, MPS o AcademyModule que resuelvan algo análogo? (Evitar reinventar la rueda).
 - **Herramientas o servicios externos**: APIs evaluadas (Stripe, Firebase, Webhooks bancarios, etc.), costos o limitaciones operativas conocidas.
 - **Lecciones aprendidas**: Fallas o limitaciones que se hayan presentado en versiones previas de características similares.
 
@@ -90,16 +90,16 @@ Identificación previa de librerías, aplicaciones y servicios que requerirán c
 
 Una vez generada la investigación con Antigravity:
 
-1. **Creación / Actualización en Jira Product Discovery (`MXPD`)**:
-   - **Regla de Título Corto y Administrable (`summary`)**: El título de la Idea en `MXPD` debe ser **conciso, directo y administrable desde vistas de tabla/panel (30 a 50 caracteres máximo)**. Prohibido usar prefijos entre corchetes o enumerar múltiples componentes técnicos en el título (ej. ✅ `"Privacidad, Consentimiento y Derechos ARCO"`, ❌ `"[Afiliación Sheló & Privacidad] Consentimiento Legal Bilateral Versionado, Validador CURP..."`).
+1. **Creación / Actualización en Jira Product Discovery (`DISC`)**:
+   - **Regla de Título Corto y Administrable (`summary`)**: El título de la Idea en `DISC` debe ser **conciso, directo y administrable desde vistas de tabla/panel (30 a 50 caracteres máximo)**. Prohibido usar prefijos entre corchetes o enumerar múltiples componentes técnicos en el título (ej. ✅ `"Privacidad, Consentimiento y Derechos ARCO"`, ❌ `"[Afiliación Sheló & Privacidad] Consentimiento Legal Bilateral Versionado, Validador CURP..."`).
    - **Regla de Listas Numeradas y Formato en Descripción (`description`)**:
      - **Salto de línea corto en listas numeradas**: Al redactar listas numeradas (`1.`, `2.`, `3.`), cada ítem debe ir en líneas consecutivas simples (**salto de línea corto `\n`**, sin líneas en blanco `\n\n` ni sub-bullets indentados con `-` entre ítems). Un salto de línea largo o sub-bullet rompe la lista en Jira Wiki Markup (`#`) y aplana todos los números a `1.`.
      - **Cero backticks dentro de negritas**: Nunca anidar `` `código` `` dentro de `**negritas**` (`**Texto (`código`)**`); colocar siempre el código fuera de los asteriscos (`**Texto** (` + `` `código` `` + `)`) para que Jira convierta correctamente a `{{código}}`.
 2. **Registro de Investigaciones y Archivos Base como Datos Relevantes (Polaris Insights)**:
-   - Toda investigación (Spike), especificación de dominio o plantilla documental base publicada en Confluence Cloud debe registrarse como **Dato Relevante (Polaris Insight)** en la pestaña **"Datos relevantes"** del ticket `MXPD` (además del enlace remoto con `jira_create_remote_issue_link`).
+   - Toda investigación (Spike), especificación de dominio o plantilla documental base publicada en Confluence Cloud debe registrarse como **Dato Relevante (Polaris Insight)** en la pestaña **"Datos relevantes"** del ticket `DISC` (además del enlace remoto con `jira_create_remote_issue_link`).
    - En la API GraphQL de Atlassian Polaris (`/gateway/api/graphql` o `https://api-private.atlassian.com/graphql` con header `"X-ExperimentalApi": "polaris-v0"`), los *Insights* se crean mediante la mutación `createPolarisInsight(input: CreatePolarisInsightInput!)` asociando el `cloudID`, `projectID`, `issueID`, `description` (ADF) y los `snippets` con la URL del documento de Confluence.
 3. **Publicación en Confluence Cloud (Estándar OKF2)**:
-   - Publicar los documentos base y de arquitectura bajo el espacio correspondiente (`MI`, `GOOL`, etc.) usando el skill `confluence-authoring`.
+   - Publicar los documentos base y de arquitectura bajo el espacio correspondiente (`MI`, `DOCS`, etc.) usando el skill `confluence-authoring`.
    - En el bloque de metadatos OKF2 al inicio de la página, usar una lista compacta o salto de línea simple sin párrafos espaciados excesivos, y mantener un solo formato de diagrama limpio por sección.
 4. **Pase a Refinamiento**:
    - Indicar explícitamente al usuario que la investigación está lista para alimentar `/feature-refine` (`jira-story-structure`).
@@ -108,9 +108,9 @@ Una vez generada la investigación con Antigravity:
 
 ## 📚 4. Referencias y Contexto del Monorepo (Progressive Disclosure)
 
-Para asegurar coherencia con el dominio de negocio de Marxa Digital, consulta bajo demanda:
+Para asegurar coherencia con el dominio de negocio de JG7, consulta bajo demanda:
 
 * **[Glosario Maestro y Lenguaje Ubicuo](./glosario-ubicuo.md)**: Nomenclatura oficial de actores (`Payer`, `Subscriber`), finanzas (`Ledger`, `Transaction`) y estados canónicos.
 * **[Seguridad y Matriz Multi-Tenant](./multi-tenant-matrix.md)**: Convención de aislamiento de colecciones `tenants/{tenantId}/` y roles de acceso.
-* **[Arquitectura de Features Shared](./shared-features.md)**: Directrices para que los componentes y contratos sean reutilizables entre verticales (ProFees, Goolima, Miss Pedidos).
+* **[Arquitectura de Features Shared](./shared-features.md)**: Directrices para que los componentes y contratos sean reutilizables entre verticales (CoreProduct, AcademyModule, Miss Pedidos).
 * **[Taxonomía de Contratos](./taxonomy-contracts.md)**: Estándar para modelar DTOs y eventos de dominio sin duplicación.

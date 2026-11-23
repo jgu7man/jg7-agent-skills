@@ -2,10 +2,10 @@
 type: spec
 title: '⚙️ 03. Gobernanza de Ambientes y Resolución de config.json'
 description: 'Arquitectura híbrida de configuración entre Realtime Database (RTDB) en caliente, Firestore y CI/CD build-time config.json.'
-tags: [valle, goolima, rtdb, firestore, configuracion, gobernanza, cicd]
+tags: [jg7-core, academy, rtdb, firestore, configuracion, gobernanza, cicd]
 generated: { by: 'human:jguzman', at: '2026-08-20T03:45:00.000Z' }
 lastUpdate: '2026-08-20T03:45:00.000Z'
-spaceKey: GOOL
+spaceKey: DOCS
 folderId: '382074881'
 ---
 
@@ -15,7 +15,7 @@ folderId: '382074881'
 
 En aplicaciones multi-marca y multi-vertical, compilar valores hardcodeados en el código TypeScript (`environment.ts`) destruye la flexibilidad y obliga a recompilar todo el proyecto ante cualquier cambio de color, logo o URL.
 
-El Valle utiliza una **Gobernanza Híbrida de Configuración**:
+La Plataforma Core utiliza una **Gobernanza Híbrida de Configuración**:
 
 - **Realtime Database (RTDB):** Identidad visual (`branding` con `titleSegments`), plantillas de tema (`theme`), terminología de dominio (`terminology`) y copies. Cero costo de lectura por documento, reactividad instantánea en caliente y soporte offline nativo.
 - **Cloud Firestore:** Tiers SaaS (`tiers`), Planes de Stripe (`plans`), versiones de la app (`releases`) y configuración de infraestructura para el SDK de Firebase (`config/{env}.firebase`) y Sentry (`config/{env}.sentry`).
@@ -29,14 +29,14 @@ Generado exclusivamente en el bundle compilado (`dist/apps/.../config.json`):
 
 ```json
 {
-  "appId": "goolima",
+  "appId": "academy",
   "version": "1.0.0",
   "branding": {
-    "appName": "GOOLIMA",
+    "appName": "ACADEMY_MODULE",
     "subTitle": "Escuela Formativa de Fútbol",
     "titleSegments": [
       {
-        "text": "GOOLIMA",
+        "text": "ACADEMY_MODULE",
         "color": "text-emerald-500",
         "fontWeight": "black"
       },
@@ -52,9 +52,9 @@ Generado exclusivamente en el bundle compilado (`dist/apps/.../config.json`):
     "fontFamily": "Agency FB, sans-serif"
   },
   "authExperience": {
-    "layoutVariant": "GOOLIMA",
+    "layoutVariant": "ACADEMY_MODULE",
     "allowSelfRegistration": false,
-    "registrationDisabledNotice": "El acceso es exclusivo para profesores y directores de GOOLIMA.",
+    "registrationDisabledNotice": "El acceso es exclusivo para profesores y directores de ACADEMY_MODULE.",
     "socialProviders": []
   },
   "navigation": {
@@ -62,16 +62,16 @@ Generado exclusivamente en el bundle compilado (`dist/apps/.../config.json`):
     "defaultRoute": "/dashboard"
   },
   "remotes": {
-    "sports": "https://crm-goolima-dev.web.app/remoteEntry.js"
+    "sports": "https://crm-academy-dev.web.app/remoteEntry.js"
   },
   "firebase": {
     "apiKey": "AIzaSy...",
-    "authDomain": "pro-fees-test.firebaseapp.com",
-    "projectId": "pro-fees-test",
-    "storageBucket": "pro-fees-test.firebasestorage.app",
+    "authDomain": "core-product-test.firebaseapp.com",
+    "projectId": "core-product-test",
+    "storageBucket": "core-product-test.firebasestorage.app",
     "messagingSenderId": "1075101749723",
     "appId": "1:1075101749723:web:...",
-    "databaseURL": "https://pro-fees-test-default-rtdb.firebaseio.com"
+    "databaseURL": "https://core-product-test-default-rtdb.firebaseio.com"
   },
   "sentry": {
     "enabled": true,
@@ -79,8 +79,8 @@ Generado exclusivamente en el bundle compilado (`dist/apps/.../config.json`):
     "tracesSampleRate": 0.2
   },
   "externalUrl": {
-    "public": "https://crm-goolima-dev.web.app",
-    "helpDesk": "https://soporte.marxadigital.com",
+    "public": "https://crm-academy-dev.web.app",
+    "helpDesk": "https://soporte.JG7.com",
     "supportWhatsApp": "523121044791"
   }
 }
@@ -88,13 +88,13 @@ Generado exclusivamente en el bundle compilado (`dist/apps/.../config.json`):
 
 ---
 
-## 3. Matriz de Ambientes del Valle
+## 3. Matriz de Ambientes de la plataforma
 
 | Ambiente                   | Propósito                              | Base de Datos                          | Hostings de Lobbies                | CDN de Motores              |
 | :------------------------- | :------------------------------------- | :------------------------------------- | :--------------------------------- | :-------------------------- |
 | **Dev (Local / Emulador)** | Desarrollo diario de ingenieros.       | Emuladores Firebase (8080, 9099, 9000) | `localhost:4200`, `localhost:4202` | `localhost:4201`            |
-| **Beta (Dev Remoto / QA)** | Validación y pruebas con backend real. | `pro-fees-test` / `miss-pedidos-dev`   | `crm-goolima-dev.web.app`          | `profees-motor-dev.web.app` |
-| **Prod (Producción)**      | Operación comercial real.              | `pro-fees-prod` / `miss-pedidos`       | `app.goolima.com`                  | `cdn.profees.io`            |
+| **Beta (Dev Remoto / QA)** | Validación y pruebas con backend real. | `core-product-test` / `miss-pedidos-dev`   | `crm-academy-dev.web.app`          | `core-product-motor-dev.web.app` |
+| **Prod (Producción)**      | Operación comercial real.              | `core-product-prod` / `miss-pedidos`       | `app.academy.com`                  | `cdn.core-product.io`            |
 
 ---
 
@@ -106,7 +106,7 @@ graph TD
     B -->|nx show projects --affected --with-target=deploy --json| C{¿Apps Afectadas?}
     C -->|No| D[🏁 Fin: Nada que desplegar]
     C -->|Sí| E[Dynamic Matrix: outputs.projects]
-    E --> F[Job 2.1: Deploy goolima-lobby]
+    E --> F[Job 2.1: Deploy academy-lobby]
     E --> G[Job 2.2: Deploy main-lobby]
     F --> H[1. Build Angular Bundle]
     H --> I[2. generate-runtime-config.ts desde Firestore]

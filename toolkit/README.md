@@ -1,54 +1,53 @@
-# 📦 Marxa Digital Agent Toolkit (CLI, Repo Remoto & Plugin de Antigravity)
+# 📦 JG7 Engineering Toolkit (CLI, Repo Remoto & Plugin de Antigravity)
 
-Este directorio contiene el **CLI en TypeScript ([mxd-skills.ts](./mxd-skills.ts))** y el manifiesto de **Plugin de Antigravity ([plugin.template.json](./plugin.template.json))** para versionar, instalar y activar tus skills en cualquier máquina o monorepo.
-
----
-
-## 1. Cómo subir tus skills a un Repositorio Remoto (GitHub)
-
-Ejecuta una sola vez dentro de `/Users/jgu7man/.gemini/config/skills`:
-
-```bash
-cd ~/.gemini/config/skills
-git init
-git add .
-git commit -m "feat: initial Marxa Digital action skills & toolkit"
-gh repo create marxa-digital/mxd-agent-skills --private --source=. --remote=origin --push
-```
-
-Cuando un compañero (o tú en otra Mac) quiera instalarlos:
-
-```bash
-git clone git@github.com:marxa-digital/mxd-agent-skills.git ~/.gemini/config/skills
-```
+Este directorio contiene el **CLI en TypeScript ([jg7-skills.ts](./jg7-skills.ts))** y el manifiesto de **Plugin de Antigravity ([plugin.template.json](./plugin.template.json))** para versionar, instalar y activar tus skills bajo el estándar **`jg7` (`jgu7man`)**.
 
 ---
 
-## 2. Comandos del CLI (`toolkit/mxd-skills.ts`)
+## 1. Presets Disponibles en el CLI
 
-### Listar todos los comandos `/` disponibles
+- **`codestyle`**: `tech-plan`, `sanitize-architecture`, `code-review`, `review-loop`, `refine-specs`, `bruno-qa`, `friendly-git`, `pwa-install`. *(100% enfocados en arquitectura, clean code, Zod, Angular/Nx y QA).*
+- **`nx-core`**: Todos los de `codestyle` + `execute-ticket` y `deploy`.
+- **`product`**: `jira`, `confluence-authoring`, `confluence-roadmap-planner`, `refine-specs`, `friendly-git`, `illustrations`.
+- **`full`**: Los 16 skills completos.
+
+---
+
+## 2. Cómo Instalar los Skills en un Proyecto (`install` vs `use`)
+
+### Opción A: Instalar físicamente dentro del proyecto (`<proyecto>/.agents/skills/`) — Comando `install`
+Copia las carpetas de los skills elegidos dentro de `<proyecto>/.agents/skills/` para versionarlos en el Git del proyecto o personalizarlos localmente (tienen **Prioridad #1** en Antigravity sobre los globales):
+
 ```bash
-npx tsx ~/.gemini/config/skills/toolkit/mxd-skills.ts list
+# Instalar solo el paquete de Code-Style y Arquitectura
+npx tsx ~/.gemini/config/skills/toolkit/jg7-skills.ts install /ruta/a/tu-proyecto codestyle
+
+# Instalar el paquete Nx Core
+npx tsx ~/.gemini/config/skills/toolkit/jg7-skills.ts install /ruta/a/tu-proyecto nx-core
+
+# Instalar skills específicos separados por coma
+npx tsx ~/.gemini/config/skills/toolkit/jg7-skills.ts install /ruta/a/tu-proyecto tech-plan,review-loop,code-review,bruno-qa
 ```
 
-### Activar un preset de skills en un proyecto específico (`.agents/skills.json`)
-Genera el archivo nativo `.agents/skills.json` de Antigravity con `include_only` sin duplicar carpetas:
-```bash
-# Preset para monorepos Nx (miss-pedidos, valley, profees)
-npx tsx ~/.gemini/config/skills/toolkit/mxd-skills.ts use ~/Code/miss-pedidos nx-core
+### Opción B: Enlazar sin copiar archivos (`<proyecto>/.agents/skills.json`) — Comando `use`
+Genera únicamente el archivo ligero `.agents/skills.json` apuntando a tu carpeta global con `include_only`:
 
-# Preset completo
-npx tsx ~/.gemini/config/skills/toolkit/mxd-skills.ts use ~/Code/miss-pedidos full
+```bash
+npx tsx ~/.gemini/config/skills/toolkit/jg7-skills.ts use /ruta/a/tu-proyecto codestyle
+npx tsx ~/.gemini/config/skills/toolkit/jg7-skills.ts use /ruta/a/tu-proyecto nx-core
 ```
 
-### Empaquetar como Plugin Nativo de Antigravity
-Si quieres instalar toda la suite como un **Plugin único** con switch On/Off en la página de Customizations de Antigravity (`~/.gemini/config/plugins/marxa-digital-toolkit`):
-```bash
-npx tsx ~/.gemini/config/skills/toolkit/mxd-skills.ts pack-plugin /tmp/marxa-digital-toolkit
-```
-*(Nota: Si los empaquetas dentro de `~/.gemini/config/plugins/` al mismo tiempo que viven sueltos en `~/.gemini/config/skills/`, Antigravity los descubriría por duplicado; usa o bien `~/.gemini/config/skills/` o bien el plugin en `~/.gemini/config/plugins/`).*
+---
 
-### Sincronizar cambios con el repositorio remoto
+## 3. Otros Comandos del CLI
+
 ```bash
-npx tsx ~/.gemini/config/skills/toolkit/mxd-skills.ts sync
+# Listar los 16 comandos /
+npx tsx ~/.gemini/config/skills/toolkit/jg7-skills.ts list
+
+# Empaquetar como Plugin nativo de Antigravity
+npx tsx ~/.gemini/config/skills/toolkit/jg7-skills.ts pack-plugin /tmp/jg7-engineering-toolkit
+
+# Sincronizar con el repositorio remoto (git pull --rebase)
+npx tsx ~/.gemini/config/skills/toolkit/jg7-skills.ts sync
 ```

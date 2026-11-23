@@ -1,17 +1,17 @@
 ---
 type: playbook
 title: '🛡️ Playbook: Auditoría y Saneamiento Integral del Monorepo'
-description: 'Procedimiento estandarizado en 6 pasos para auditar, sanear y mantener la calidad del monorepo Mx Business Valley.'
-tags: [valle, devops, arquitectura, auditoria, nx, calidad, tooling]
+description: 'Procedimiento estandarizado en 6 pasos para auditar, sanear y mantener la calidad del monorepo el Monorepo Nx (Estándar JG7).'
+tags: [jg7-core, devops, arquitectura, auditoria, nx, calidad, tooling]
 generated: { by: 'human:jguzman', at: '2026-08-20T03:45:00.000Z' }
 lastUpdate: '2026-08-20T03:45:00.000Z'
-spaceKey: GOOL
+spaceKey: DOCS
 folderId: '382074881'
 ---
 
 # 🛡️ Playbook: Auditoría y Saneamiento Integral del Monorepo
 
-Este documento formaliza el procedimiento estandarizado para auditar, sanear y mantener la calidad del monorepo **Mx Business Valley** en futuras iteraciones y migraciones.
+Este documento formaliza el procedimiento estandarizado para auditar, sanear y mantener la calidad del monorepo **el Monorepo Nx (Estándar JG7)** en futuras iteraciones y migraciones.
 
 ---
 
@@ -35,14 +35,14 @@ Este documento formaliza el procedimiento estandarizado para auditar, sanear y m
 
 ### Checklist:
 
-- [ ] **Selectores:** Verificar que los componentes compartidos utilicen prefijos aprobados (`ui-*`, `valley-*`, `goolima-*`).
-- [ ] **Configuraciones de Linter:** Asegurar que `eslint.config.mjs` y `project.json` en cada biblioteca tengan configurado `"prefix": ["ui", "valley"]`.
-- [ ] **Magic Strings:** Auditar que no existan strings literales en `localStorage`/`sessionStorage`; usar `ValleyStorageKey`.
-- [ ] **Rutas:** Usar siempre los enums `ValleyRoute`, `ValleyPath`, `ProfeesRoute`, `ProfeesPath`.
+- [ ] **Selectores:** Verificar que los componentes compartidos utilicen prefijos aprobados (`ui-*`, `jg7-*`, `feat-*`).
+- [ ] **Configuraciones de Linter:** Asegurar que `eslint.config.mjs` y `project.json` en cada biblioteca tengan configurado `"prefix": ["ui", "jg7"]`.
+- [ ] **Magic Strings:** Auditar que no existan strings literales en `localStorage`/`sessionStorage`; usar `CoreStorageKey`.
+- [ ] **Rutas:** Usar siempre los enums `CoreRoute`, `CorePath`, `ModuleRoute`, `ModulePath`.
 
 ---
 
-## 🗂️ Paso 2: Auditoría de Arquitectura y Atomic Design (`@mx-valley/ui`)
+## 🗂️ Paso 2: Auditoría de Arquitectura y Atomic Design (`@jg7/core-ui`)
 
 ### Objetivos:
 
@@ -58,7 +58,7 @@ Este documento formaliza el procedimiento estandarizado para auditar, sanear y m
 
 ---
 
-## 🧰 Paso 3: Auditoría de Utilidades y Principio "Utility-First" (`@mx-valley/util`)
+## 🧰 Paso 3: Auditoría de Utilidades y Principio "Utility-First" (`@jg7/core-utils`)
 
 ### Objetivos:
 
@@ -96,7 +96,7 @@ Este documento formaliza el procedimiento estandarizado para auditar, sanear y m
 ### Checklist:
 
 - [ ] **TypeScript Obligatorio:** Todos los scripts deben ser `.ts` (`pnpm exec ts-node scripts/*.ts`). Queda prohibido `.js`.
-- [ ] **Rutas Actualizadas:** Los scripts que interactúan con apps (`start-app.ts`, `gen-env.ts`) deben apuntar a las aplicaciones vigentes (`apps/profees/*`).
+- [ ] **Rutas Actualizadas:** Los scripts que interactúan con apps (`start-app.ts`, `gen-env.ts`) deben apuntar a las aplicaciones vigentes (`apps/core-product/*`).
 - [ ] **Puertos y Emuladores:** Scripts como `emulate.ts` deben limpiar puertos residuales antes de iniciar.
 
 ---

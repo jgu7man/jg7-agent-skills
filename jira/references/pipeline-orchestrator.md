@@ -23,7 +23,7 @@ flowchart LR
 
 | Rol                        | Skill / Subagente que lo ejecuta                                                                                                                                                                                        | Entregable                                                                                                                                                                           |
 | :------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **1. Arquitecto**          | [tech-plan](file:///Users/jgu7man/.gemini/config/skills/tech-plan/SKILL.md)                                                                                                                 | **Plan de Implementación** bajo estándar `marxa-digital/[scope]`, `shared/*/[scope]`, `modules/[scope]/*`, `functions/[scope]` + contratos `*.model.ts` y schemas Zod `*.schema.ts`. |
+| **1. Arquitecto**          | [tech-plan](file:///Users/jgu7man/.gemini/config/skills/tech-plan/SKILL.md)                                                                                                                 | **Plan de Implementación** bajo estándar `jg7/[scope]`, `shared/*/[scope]`, `modules/[scope]/*`, `functions/[scope]` + contratos `*.model.ts` y schemas Zod `*.schema.ts`. |
 | **2. Orquestador**         | Agente Principal (`feature-pipeline` / `feature-execute`)                                                                                                                                                               | Rama `feature/<key>-<slug>`, transición en Jira, actualización de `.agents/active-feature.json` y coordinación de subagentes.                                                        |
 | **3. Coder**               | Subagente `self` (y `firestore-rules-author` si toca `firestore.rules`)                                                                                                                                                 | Código implementado según el Plan, aplicando Protocolo CAT, validación Zod `.parse()`/`.safeParse()` en DB y `*.spec.ts`.                                                            |
 | **4. Revisor QA**          | Subagente **`qa-code-reviewer`** + [code-review](file:///Users/jgu7man/.gemini/config/skills/code-review/SKILL.md)                                                                                          | Reporte granular `archivo:línea` (🔴/🟡/🟢) + aprobación mecánica de `nx affected -t typecheck,lint,test`.                                                                           |
@@ -38,7 +38,7 @@ Ruta en la raíz del proyecto activo: `.agents/active-feature.json`
 ```json
 {
 	"featureKey": "MPS-1042",
-	"discoveryKey": "MXPD-234",
+	"discoveryKey": "DISC-234",
 	"title": "Motor de Recálculo de Saldos y Devoluciones",
 	"branch": "feature/mps-1042-recalculo-saldos",
 	"currentStage": "FUNCTIONAL_QA",
@@ -92,7 +92,7 @@ Ruta en la raíz del proyecto activo: `.agents/active-feature.json`
 - **Acción**:
   1. Salir de `develop` o `main`; crear rama `feature/<ticket>-<slug>`.
   2. Generar el **Plan de Implementación** con [tech-plan](file:///Users/jgu7man/.gemini/config/skills/tech-plan/SKILL.md):
-     - Selección minimalista de librerías (`marxa-digital/[scope]`, `shared/*/[scope]`, `modules/[scope]/{api,feature,data-access,domain,ui,utils}`, `functions/[scope]`).
+     - Selección minimalista de librerías (`jg7/[scope]`, `shared/*/[scope]`, `modules/[scope]/{api,feature,data-access,domain,ui,utils}`, `functions/[scope]`).
      - Definición de contratos `*.model.ts` y **schemas Zod `*.schema.ts`** obligatorios para DB.
      - Estrategia de `BoundaryTransformer`, componentes `OnPush` y casos de prueba.
   3. Auditar deuda técnica previa en los archivos a modificar (Protocolo CAT).
@@ -129,7 +129,7 @@ Ruta en la raíz del proyecto activo: `.agents/active-feature.json`
 
 ### Fase 7: CI/CD & Pull Request (`/feature-ship`)
 
-- **Acción**: Push con `-u origin <rama>`, apertura de PR con **Squash merge** (salvo `release`/`hotfix`), vínculo en Jira (`mxd_link_pr`).
+- **Acción**: Push con `-u origin <rama>`, apertura de PR con **Squash merge** (salvo `release`/`hotfix`), vínculo en Jira (`jira_create_remote_issue_link`).
 
 ### Fase 8: Documentación Funcional en Confluence (`/doc-functional`)
 

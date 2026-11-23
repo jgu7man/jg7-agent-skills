@@ -1,6 +1,6 @@
 ---
 name: pwa-install
-description: Playbook global, arquitectura UX y guía multi-plataforma (iOS 18+, Android, Windows, macOS y navegadores in-app como WhatsApp) para implementar experiencias no invasivas de instalación, detección de entorno standalone y actualización de PWAs ("Cómo instalar") en cualquier aplicación web de Marxa Digital.
+description: Playbook global, arquitectura UX y guía multi-plataforma (iOS 18+, Android, Windows, macOS y navegadores in-app como WhatsApp) para implementar experiencias no invasivas de instalación, detección de entorno standalone y actualización de PWAs ("Cómo instalar") en cualquier aplicación web de JG7.
 ---
 
 # 📲 Skill Global: Experiencia de Usuario para Instalación y Ciclo de Vida PWA (`pwa-install`)

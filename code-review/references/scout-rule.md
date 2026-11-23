@@ -9,10 +9,10 @@
 
 ```
 1. AUDITORÍA DE REUSABILIDAD
-   └── Antes de codificar, buscar en `@mx-valley/util`, `@mx-valley/shared-ui` y `@mx-<suite>/models`.
+   └── Antes de codificar, buscar en `@jg7/core-utils`, `@jg7/shared-ui` y `@mx-<suite>/models`.
        ¿Existe ya un formateador de moneda, fecha, iniciales o validador?
        ► SI: Reutilizar directamente.
-       ► NO: Si es transversal, crear primero en `@mx-valley/util` con su `*.spec.ts`.
+       ► NO: Si es transversal, crear primero en `@jg7/core-utils` con su `*.spec.ts`.
 
 2. DETECCIÓN & ERRADICACIÓN DE ANTIPATRONES
    └── Auditar los archivos que se van a modificar en busca de:
@@ -65,8 +65,8 @@ const initials = name
   .slice(0, 2);
 const dateStr = date.toISOString().split('T')[0];
 
-// ✅ CORRECTO — Utilidades canónicas de @mx-valley/util
-import { getInitials, toTenantLocalDateString, formatCurrency } from '@mx-valley/util';
+// ✅ CORRECTO — Utilidades canónicas de @jg7/core-utils
+import { getInitials, toTenantLocalDateString, formatCurrency } from '@jg7/core-utils';
 const initials = getInitials(name);
 const dateStr = toTenantLocalDateString(date);
 ```
@@ -90,4 +90,4 @@ Toda Historia de Usuario o Tarea Técnica debe incluir en su sección técnica e
 
 - Qué antipatrones existentes en los archivos intervenidos serán eliminados.
 - Qué componentes monolíticos serán modularizados para evitar sobrecargarlos.
-- Qué utilidades de `@mx-valley/util` serán aprovechadas.
+- Qué utilidades de `@jg7/core-utils` serán aprovechadas.

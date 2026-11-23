@@ -2,7 +2,7 @@
 
 ## 1. Resumen Ejecutivo y Propósito
 
-El módulo de **Planes de Servicio / Categorías (`ServicePlan`)** es el núcleo de configuración académica, deportiva y financiera de la suite ProFees. Permite a los administradores de academias y clubes configurar:
+El módulo de **Planes de Servicio / Categorías (`ServicePlan`)** es el núcleo de configuración académica, deportiva y financiera de la suite CoreProduct. Permite a los administradores de academias y clubes configurar:
 
 1. **Reglas de Admisión:** Rangos de edad (ej. 6 a 7 años) y cupos máximos por grupo.
 2. **Programación y Horarios:** Días de la semana y horas de entrenamiento.
@@ -25,10 +25,10 @@ graph TD
 
 ### Ubicación de Archivos:
 
-- **Componente Modal:** [`libs/profees/suite-main/src/lib/plans/create-service-plan-modal.component.ts`](file:///Users/jgu7man/Code/marxa-digital/mx-business-valley/libs/profees/suite-main/src/lib/plans/create-service-plan-modal.component.ts)
-- **Template HTML:** [`libs/profees/suite-main/src/lib/plans/create-service-plan-modal.component.html`](file:///Users/jgu7man/Code/marxa-digital/mx-business-valley/libs/profees/suite-main/src/lib/plans/create-service-plan-modal.component.html)
-- **Modelos & Enums:** [`libs/profees/suite-main/src/lib/models/service-plan.model.ts`](file:///Users/jgu7man/Code/marxa-digital/mx-business-valley/libs/profees/suite-main/src/lib/models/service-plan.model.ts)
-- **Selector de Días:** [`libs/shared/ui/src/lib/molecules/days-of-week-selector/days-of-week-selector.component.ts`](file:///Users/jgu7man/Code/marxa-digital/mx-business-valley/libs/shared/ui/src/lib/molecules/days-of-week-selector/days-of-week-selector.component.ts)
+- **Componente Modal:** [`libs/core-product/shared-domain/src/lib/plans/create-service-plan-modal.component.ts`](file:///Users/jgu7man/Code/jg7/mx-nx-monorepo/libs/core-product/shared-domain/src/lib/plans/create-service-plan-modal.component.ts)
+- **Template HTML:** [`libs/core-product/shared-domain/src/lib/plans/create-service-plan-modal.component.html`](file:///Users/jgu7man/Code/jg7/mx-nx-monorepo/libs/core-product/shared-domain/src/lib/plans/create-service-plan-modal.component.html)
+- **Modelos & Enums:** [`libs/core-product/shared-domain/src/lib/models/service-plan.model.ts`](file:///Users/jgu7man/Code/jg7/mx-nx-monorepo/libs/core-product/shared-domain/src/lib/models/service-plan.model.ts)
+- **Selector de Días:** [`libs/shared/ui/src/lib/molecules/days-of-week-selector/days-of-week-selector.component.ts`](file:///Users/jgu7man/Code/jg7/mx-nx-monorepo/libs/shared/ui/src/lib/molecules/days-of-week-selector/days-of-week-selector.component.ts)
 
 ---
 
@@ -133,7 +133,7 @@ export interface PlanScheduleSlot {
 | Característica       | Modo Creación (`planToEdit = null`)                                                            | Modo Edición (`planToEdit = ServicePlan`)                 |
 | :------------------- | :--------------------------------------------------------------------------------------------- | :-------------------------------------------------------- |
 | **Título del Modal** | _"Crear Nuevo Plan / Categoría"_                                                               | _"Editar Plan: [Nombre del Plan]"_                        |
-| **Carga de Datos**   | Valores por defecto y restauración de borrador local (`ValleyStorageKey.CREATE_PLAN_DRAFT`)    | Pobla el formulario con la entidad existente en Firestore |
+| **Carga de Datos**   | Valores por defecto y restauración de borrador local (`CoreStorageKey.CREATE_PLAN_DRAFT`)    | Pobla el formulario con la entidad existente en Firestore |
 | **Persistencia**     | `SubscribersResourceService.createServicePlan(...)` con auto-generación de `id` y `orderIndex` | `SubscribersResourceService.updateServicePlan(id, ...)`   |
 | **Eventos Emitidos** | `planCreated.emit({ planId, name })`                                                           | `planCreated.emit({ planId, name })`                      |
 | **Feedback UI**      | Toast verde de éxito y selección automática del nuevo plan en el sidebar                       | Toast de confirmación de actualización en tiempo real     |

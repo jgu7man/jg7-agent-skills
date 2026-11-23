@@ -5,7 +5,7 @@ description: Orquesta y monitorea el flujo de CI/CD para el entorno de Desarroll
 
 # 🟢 Skill: CI/CD & Despliegue en DEV (`/develop-deploy`)
 
-Utiliza este skill siempre que necesites **desplegar, validar o monitorear un cambio en el entorno de Desarrollo (DEV)** (`crm-goolima-dev.web.app` / `pro-fees-test`).
+Utiliza este skill siempre que necesites **desplegar, validar o monitorear un cambio en el entorno de Desarrollo (DEV)** (`crm-academy-dev.web.app` / `core-product-test`).
 
 ---
 
@@ -50,7 +50,7 @@ Al invocar `/develop-deploy`, Antigravity ejecutará el siguiente flujo:
    gh workflow run manual-hosting-deploy.yml \
      --ref $(git branch --show-current) \
      -f target-environment=dev \
-     -f app=profees-goolima-lobby \
+     -f app=core-product-academy-lobby \
      -f channel=live \
      -f deploy_rules=${HAS_RULES} \
      -f deploy_functions=${HAS_FUNCTIONS}
@@ -63,7 +63,7 @@ Al invocar `/develop-deploy`, Antigravity ejecutará el siguiente flujo:
    gh run watch $(gh run list --workflow=manual-hosting-deploy.yml --limit 1 --json databaseId -q '.[0].databaseId')
    ```
 2. **Reporte de avance**: Informar al usuario cuando:
-   - Autentique en GCP (`pro-fees-test`).
+   - Autentique en GCP (`core-product-test`).
    - Genere `config.json` de runtime.
    - Concluya la compilación de producción con Nx.
    - Finalice la publicación en Firebase Hosting.
@@ -75,7 +75,7 @@ Al invocar `/develop-deploy`, Antigravity ejecutará el siguiente flujo:
 
 ### Paso 5: Verificación de Salud & Punto de Control (Sanity Check)
 1. Confirmar la disponibilidad del sitio en:
-   - `https://crm-goolima-dev.web.app` (o el canal preview indicado).
+   - `https://crm-academy-dev.web.app` (o el canal preview indicado).
 2. Reportar el resultado al usuario y ofrecer la acción de cierre:
    - *"Despliegue a DEV finalizado con éxito. ¿Deseas proceder al **Squash Merge** del PR hacia `develop`?"*
 3. Si el usuario confirma:

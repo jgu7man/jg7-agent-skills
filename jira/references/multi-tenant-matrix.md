@@ -2,19 +2,19 @@
 type: spec
 title: '🛡️ 04. Seguridad y Matriz de Acceso Multi-tenant'
 description: 'Regla de oro de desacoplamiento uid vs tenantId, matriz de roles RBAC (Nivel 0 al 4) y Security Rules en Firestore.'
-tags: [valle, goolima, profees, seguridad, rbac, multi-tenant, auth, firestore-rules]
+tags: [jg7-core, academy, core-product, seguridad, rbac, multi-tenant, auth, firestore-rules]
 generated: { by: 'human:jguzman', at: '2026-08-20T03:45:00.000Z' }
 lastUpdate: '2026-08-20T03:45:00.000Z'
-spaceKey: GOOL
+spaceKey: DOCS
 folderId: '382074881'
 ---
 
 # 🛡️ 04. Seguridad y Matriz de Acceso Multi-tenant
 
-## 1. La Regla de Oro del Valle: `uid ≠ tenantId`
+## 1. La Regla de Oro de la plataforma: `uid ≠ tenantId`
 
 - **`uid` (User ID):** Identifica a la **persona física** (su email, su contraseña, su sesión en Firebase Auth).
-- **`tenantId` (Tenant ID):** Identifica al **negocio u organización** (_Club Deportivo Goolima_, _Academia Santos_, _Sheló Nabel_).
+- **`tenantId` (Tenant ID):** Identifica al **negocio u organización** (_Club Deportivo AcademyModule_, _Academia Santos_, _Sheló Nabel_).
 
 > **PROHIBIDO:** Construir rutas de datos como `tenants/${uid}/asistencia`.  
 > **OBLIGATORIO:** Construir rutas de datos como `tenants/${tenantId}/asistencia` consumiendo `TenantService.tenantId()`.
@@ -25,8 +25,8 @@ folderId: '382074881'
 
 | Nivel de Rol                       | Identificador       | Alcance de Permisos                                                           | Ejemplo de Usuario             |
 | :--------------------------------- | :------------------ | :---------------------------------------------------------------------------- | :----------------------------- |
-| **Nivel 0: SuperAdmin Valle**      | `VALLEY_SUPERADMIN` | Control total sobre la plataforma, creación de tenants y cobros Stripe.       | Equipo Directivo Marxa Digital |
-| **Nivel 1: Dueño de Tenant**       | `TENANT_OWNER`      | Administración total del negocio (tarifas, profesores, reportes financieros). | Director de Goolima            |
+| **Nivel 0: SuperAdmin Plataforma Core**      | `VALLEY_SUPERADMIN` | Control total sobre la plataforma, creación de tenants y cobros Stripe.       | Equipo Directivo JG7 |
+| **Nivel 1: Dueño de Tenant**       | `TENANT_OWNER`      | Administración total del negocio (tarifas, profesores, reportes financieros). | Director de AcademyModule            |
 | **Nivel 2: Administrador de Club** | `BRANCH_ADMIN`      | Gestión operativa de una sede específica (inscripciones, horarios).           | Coordinador Deportivo          |
 | **Nivel 3: Profesor / Staff**      | `STAFF_COACH`       | Operación en cancha: pase de lista táctil, evaluación deportiva.              | Profesor de Fútbol             |
 | **Nivel 4: Cliente / Tutor**       | `CLIENT_TUTOR`      | Vista pública/restringida: pagos de colegiatura, asistencia de su hijo.       | Padre de Familia               |

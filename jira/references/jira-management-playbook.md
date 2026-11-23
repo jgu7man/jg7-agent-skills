@@ -1,6 +1,6 @@
 ---
 name: jira-management
-description: Experto en gestión del proyecto Jira MPS (Miss Pedidos) en marxa-digital.atlassian.net. Crea, actualiza y organiza Épicas, Historias de Usuario (HU), tareas y otros tipos de issues con descripciones en formato correcto, campos requeridos, asignación a épica padre, y transición al estado inicial apropiado.
+description: Experto en gestión del proyecto Jira MPS (Miss Pedidos) en JG7.atlassian.net. Crea, actualiza y organiza Épicas, Historias de Usuario (HU), tareas y otros tipos de issues con descripciones en formato correcto, campos requeridos, asignación a épica padre, y transición al estado inicial apropiado.
 ---
 
 # Jira Management Skill
@@ -11,19 +11,19 @@ Use this skill when tasked with creating, updating, or transition Jira issues fo
 
 ## 1. Instancia y Credenciales de Jira (Estrategia por Defecto `~/.jira.env`)
 
-- **URL base**: `https://marxa-digital.atlassian.net`
-- **Proyectos**: `PFGO` (ProFees Goolima / Business Valley) y `MPS` (Miss Pedidos).
+- **URL base**: `https://JG7.atlassian.net`
+- **Proyectos**: `PROJ` (CoreProduct AcademyModule / el Monorepo Nx) y `MPS` (Miss Pedidos).
 - **🔒 Estrategia Segura de Credenciales (ESTÁNDAR MANDATORIO)**:
-  La forma recomendada, privada y más segura por defecto para autenticar el MCP `@mxd/jira-mcp` o scripts del monorepo es almacenar las credenciales en el archivo local `~/.jira.env` (en el directorio del usuario, fuera de git):
+  La forma recomendada, privada y más segura por defecto para autenticar el MCP `@jg7/jira-mcp` o scripts del monorepo es almacenar las credenciales en el archivo local `~/.jira.env` (en el directorio del usuario, fuera de git):
 
   ```env
-  JIRA_USER=tu-email@marxa.digital
+  JIRA_USER=tu-email@jg7.digital
   JIRA_TOKEN=tu_atlassian_api_token
-  JIRA_URL=https://marxa-digital.atlassian.net
+  JIRA_URL=https://JG7.atlassian.net
   ```
 
-- **Uso con `@mxd/jira-mcp`**:
-  El servidor MCP custom en `tools/mxd-jira-mcp` lee automáticamente las credenciales desde `~/.jira.env` o variables de entorno del proceso. No es necesario exponer tokens en el chat ni en repositorios.
+- **Uso con `@jg7/jira-mcp`**:
+  El servidor MCP custom en `tools/jira-mcp-server-mcp` lee automáticamente las credenciales desde `~/.jira.env` o variables de entorno del proceso. No es necesario exponer tokens en el chat ni en repositorios.
 
 ---
 
@@ -151,7 +151,7 @@ if not jira_user or not jira_token:
     print("Error: Se requieren las variables de entorno JIRA_USER y JIRA_TOKEN")
     exit(1)
 
-url = "https://marxa-digital.atlassian.net/rest/api/2/issue"
+url = "https://JG7.atlassian.net/rest/api/2/issue"
 auth_str = f"{jira_user}:{jira_token}"
 encoded_auth = base64.b64encode(auth_str.encode("utf-8")).decode("utf-8")
 

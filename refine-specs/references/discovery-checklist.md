@@ -21,6 +21,6 @@ Nunca asumir que hace falta crear una pieza nueva sin consultar primero si:
 ## 3. Señales de Código Defensivo / Dummy a Reportar
 
 - Parámetros `raw: Record<string, unknown>` o funciones `parse*WithZod` de una sola línea.
-- Interfaces espejo o `*Like` que duplican propiedades ya existentes en `@secret-santa/shared-models` o `@marxa/auth-engine`.
+- Interfaces espejo o `*Like` que duplican propiedades ya existentes en `@secret-santa/shared-models` o `@jg7/auth-engine`.
 - Try/catch o fallbacks que silencian datos corruptos en lugar de fallar rápido (`schema.parse`).
 - Inputs/outputs o servicios inyectados que no tienen efecto real en runtime.
